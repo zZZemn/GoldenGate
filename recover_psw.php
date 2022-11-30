@@ -106,8 +106,8 @@
             $mail->SMTPSecure='tls';
 
             // h-hotel account
-            $mail->Username='email account';
-            $mail->Password='email password';
+            $mail->Username='ugabanemmanuela.pdm@gmail.com';
+            $mail->Password='Qwerty0516';
 
             // send by h-hotel email
             $mail->setFrom('email', 'Password Reset');

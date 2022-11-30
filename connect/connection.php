@@ -3,7 +3,7 @@
 $dbServername = "localhost";
 $dbUsername = "root";
 $dbPassword = "";
-$dbName = "loginsystem";
+$dbName = "golden_gate";
 
 $connect = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
 
