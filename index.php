@@ -44,12 +44,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php if ($is_invalid): ?>
             <em>Wrong email or password!</em>
         <?php endif; ?>
+        
+        <hr>
 
         <form method="post">
-                <input placeholder="username" type="text" name="email" id="email"
+                <input placeholder="Username" type="text" name="email" id="email"
                 value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
             
-                <input type="password" name="password" id="password">
+                <input placeholder="Password" type="password" name="password" id="password">
 
                 <button>Login</button>
         </form>
