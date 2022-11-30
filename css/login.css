@@ -1,0 +1,100 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #D4AF37;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px 50px;
+    height: 90px;
+}
+
+nav h4 {
+    letter-spacing: 1px;
+}
+
+.login-form-container {
+    margin: auto;
+    background-color: white;
+    height: 500px;
+    width: 500px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form-container img {
+    height: 200px;
+}
+
+.login-form-container hr {
+    height: 1px;
+    width: 85%;
+    background-color: black;
+    border: none;
+}
+
+.login-form-container em {
+    font-size: 14px;
+    color: red;
+    margin-top: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-top: 35px;
+}
+
+form input {
+    height: 40px;
+    margin-bottom: 25px;
+    border: 1px solid black;
+    padding: 10px;
+    outline: none;
+}
+
+form input:focus { border: 1px solid #D4AF37; }
+
+form input::placeholder {
+    color: rgb(97, 97, 97);
+}
+
+input:focus::-webkit-input-placeholder {
+    color:#D4AF37;
+}
+
+
+form button {
+    height: 35px;
+    width: 50%;
+    margin: auto;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+form button:hover {
+    border: 1px solid #D4AF37;
+    color:#D4AF37;
+}
+
+.login-form-container a {
+    font-size: 13px;
+    color: red;
+}
