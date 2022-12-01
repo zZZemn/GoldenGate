@@ -1,0 +1,26 @@
+* {
+    margin: auto;
+    padding: auto;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.top-nav {
+    display: flex;
+    background-color: #D4AF37;
+}
+
+.top-nav img {
+    width: 100px;
+    height: 100px;
+}
+
+.top-nav h1 {
+    font-size: 35px;
+    letter-spacing: 1px;
+    color: #FF0000;
+}
+
+.top-nav h5 {
+    font-size: 15px;
+}
