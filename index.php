@@ -16,13 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     if ($user) {
         
-        if (password_verify($_POST["password"], $user["password"])) {
-            
+        if (password_verify($_POST["password"], $user["password"]) && $user["status"] == "Active") 
+        {
             session_start();
-            
             $_SESSION["user_id"] = $user["user_no"];
             
-            header("Location: goldengate.php");
+            if($user["user_type"] == "Administrator")
+                {
+                    header("Location: goldengate.php");
+                }
+            else if($user["user_type"] == "Pharmacist")
+                {
+                    header("pos.php");
+                }
             exit;
         }
     }
