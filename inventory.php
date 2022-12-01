@@ -16,9 +16,9 @@ if (isset($_SESSION["user_id"])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Golden Gate Drugstore</title>
+    <title>Inventory</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/goldengate.css">
+    <link rel="stylesheet" href="css/inventory.css">
 </head>
 <body>
     <?php if (isset($user)): ?>
@@ -79,8 +79,7 @@ if (isset($_SESSION["user_id"])) {
                 </tr>
             </table>
         </nav>
-
-        <a href="logout.php">Logout</a>
+        
 
     <?php else: ?>
         <div class="no-account-selected">
