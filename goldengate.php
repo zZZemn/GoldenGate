@@ -29,10 +29,32 @@ if (isset($_SESSION["user_id"])) {
         </nav>
 
         <nav class="side-nav">
-            <div class="nav-links">
-                <div class="link"><img src="img/person-circle-outline.svg" alt="person-circel-outline"><a class="profile" href="#"><?php echo $user["f_name"]." ".$user["mi"]." ".$user["l_name"] ?></a></div>
-                <div class="link"><img src="img/reader-outline.svg" alt="person-circel-outline"><a class="sales-trans" href="#">Sales Transaction</a></div>
-            </div>
+            <table class="nav-links">
+                <tr class="user-profile">
+                    <td><img src="img/person-circle-outline.svg" alt=""></td>
+                    <td><a class="profile" href="#"><?php echo $user["f_name"]." ".$user["mi"]." ".$user["l_name"] ?></a></td>
+                </tr>
+                <tr>
+                    <td><img src="img/reader-outline.svg" alt=""></td>
+                    <td><a class="sales-trans" href="#">SALES TRANSACTION</a></td>
+                </tr>
+                <tr>
+                    <td><img src="img/layers-outline.svg" alt=""></td>
+                    <td><a class="inventory" href="#">INVENTORY</a></td>
+                </tr>
+                <tr>
+                    <td><img src="img/stats-chart-outline.svg" alt=""></td>
+                    <td><a class="reports" href="#">REPORTS</a></td>
+                </tr>
+                <tr>
+                    <td><img src="img/build-outline.svg" alt=""></td>
+                    <td><a class="maintenance" href="#">MAINTENANCE</a></td>
+                </tr>
+                <tr class="others-td">
+                    <td><img src="img/apps-outline.svg" alt=""></td>
+                    <td><a class="others" href="#">OTHERS</a></td>
+                </tr>
+            </table>
         </nav>
 
 

@@ -31,20 +31,75 @@
 
 /*----------------------------------*/
 .side-nav {
-    position: absolute;
     background-color: #D4AF37;
     height: 85.6vh;
     width: 250px;
+    margin: 0;
 }
 
 .nav-links {
+    border-collapse: collapse;
     position: relative;
-    height: 50%;
-    background-color: rebeccapurple;
 }
 
+.nav-links tr  {
+    border-top: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.nav-links tr td {
+    padding: 5px;
+}
+
+.nav-links a{
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 5px;
+    padding: 10px 0px;
+}
 
 .nav-links img {
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
+}
+
+.others-td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.user-profile td {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.user-profile td a {
+    padding: 20px 0px !important;
+}
+
+.profile {
+    padding-right: 10px !important;
+}
+
+.sales-trans {
+    padding-right: 13px !important;
+}
+
+.inventory {
+    padding-right: 87.5px !important;
+}
+
+.reports {
+    padding-right: 106px !important;
+}
+
+.maintenance {
+    padding-right: 62px !important;
+}
+
+.others {
+    padding-right: 114.5px !important;
+}
+
+.nav-links a:hover {
+    color: rgba(0, 0, 0, 0.829);
 }
