@@ -15,6 +15,10 @@
     height: 100px;
 }
 
+.top-nav a {
+    height: 100px;
+}
+
 .top-nav h1 {
     font-size: 35px;
     letter-spacing: 1px;
@@ -23,4 +27,24 @@
 
 .top-nav h5 {
     font-size: 15px;
+}
+
+/*----------------------------------*/
+.side-nav {
+    position: absolute;
+    background-color: #D4AF37;
+    height: 85.6vh;
+    width: 250px;
+}
+
+.nav-links {
+    position: relative;
+    height: 50%;
+    background-color: rebeccapurple;
+}
+
+
+.nav-links img {
+    height: 25px;
+    width: 25px;
 }

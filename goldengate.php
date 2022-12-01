@@ -23,9 +23,16 @@ if (isset($_SESSION["user_id"])) {
 <body>
     <?php if (isset($user)): ?>
         <nav class="top-nav">
-            <img src="img/ggd-logo.png" alt="GGD">
+            <a href="#"><img src="img/ggd-logo.png" alt="GGD"></a>
             <h1>GOLDEN GATE DRUGSTORE</h1>
             <h5><?php echo $time ?></h5>
+        </nav>
+
+        <nav class="side-nav">
+            <div class="nav-links">
+                <div class="link"><img src="img/person-circle-outline.svg" alt="person-circel-outline"><a class="profile" href="#"><?php echo $user["f_name"]." ".$user["mi"]." ".$user["l_name"] ?></a></div>
+                <div class="link"><img src="img/reader-outline.svg" alt="person-circel-outline"><a class="sales-trans" href="#">Sales Transaction</a></div>
+            </div>
         </nav>
 
 
