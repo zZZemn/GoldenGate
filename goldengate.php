@@ -55,6 +55,28 @@ if (isset($_SESSION["user_id"])) {
                     <td><a class="others" href="#">OTHERS</a></td>
                 </tr>
             </table>
+
+            <div class="date"><?php echo "<h4>$date</h4>"; ?></div>
+
+            <table class="daily-sales">
+                <tr>
+                    <td class="img-td"><img src="img/wallet-outline.svg" alt=""></td>
+                    <td class="daily-sales-text-td">DAILY SALES</td>
+                </tr>
+                <tr>
+                    <td class="daily-sales-amount-td" colspan="2">PHP 1400</td>
+                </tr>
+            </table>
+
+            <table class="notice">
+                <tr>
+                    <td class="img-td"><img src="img/alert-circle-outline.svg" alt=""></td>
+                    <td class="notice-text-td">NOTICE</td>
+                </tr>
+                <tr>
+                    <td class="notice-td" colspan="2"><li><a href="#">Products low level!</a></li></td>
+                </tr>
+            </table>
         </nav>
 
 

@@ -4,7 +4,7 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
+/*------Top nav-------*/
 .top-nav {
     display: flex;
     background-color: #D4AF37;
@@ -29,12 +29,13 @@
     font-size: 15px;
 }
 
-/*----------------------------------*/
+/*-------------------nav links-----------*/
 .side-nav {
     background-color: #D4AF37;
     height: 85.6vh;
     width: 250px;
     margin: 0;
+    position: relative;
 }
 
 .nav-links {
@@ -102,4 +103,94 @@
 
 .nav-links a:hover {
     color: rgba(0, 0, 0, 0.829);
+}
+
+/*----------------Bottom links----------------*/
+
+.date {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1px;
+    font-size: 17px;
+}
+
+.daily-sales {
+    width: 70%;
+    border-collapse: collapse;
+}
+
+.daily-sales img {
+    height: 20px;
+    padding-left: 10px;
+    margin-top: 3px;
+}
+
+.daily-sales tr td {
+    border: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.daily-sales .img-td {
+    border-right: none;
+}
+
+.daily-sales-text-td {
+    border-left: none !important;
+    font-size: 13px;
+    font-weight: 700;
+    color: #035A01;
+}
+
+.daily-sales-amount-td {
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 0px;
+    color: #035A01;
+}
+
+/*notice*/
+
+.notice {
+    width: 70%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.notice img {
+    height: 20px;
+    padding-left: 10px;
+    margin-top: 3px;
+}
+
+.notice tr td {
+    border: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.notice .img-td {
+    border-right: none;
+}
+
+.notice-text-td {
+    border-left: none !important;
+    font-size: 13px;
+    font-weight: 700;
+    color: red;
+}
+
+.notice-td {
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.notice-td li {
+    color: red;
+}
+
+.notice-td a {
+    color: red;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
 }
