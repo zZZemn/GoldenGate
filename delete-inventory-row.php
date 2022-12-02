@@ -20,7 +20,7 @@
             <head>
             <div class='delete-inventory'>
                 <img src='img/alert-circle-outline.svg'>
-                <h5>Are you sure that you want to delete ".$product_row['pro_name']."<br>That delivered on ".$row['del_date']."?</h5>
+                <h5>Are you sure that you want to delete <em>".$product_row['pro_name']."</em><br>That delivered on <em class='em2'>".$row['del_date']."</em>?</h5>
                 <hr>
                 <div>
                 <a href='delete-inventory-row-process.php?id=".$row['invent_no']."' class='confirm'>Confirm</a>

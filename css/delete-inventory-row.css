@@ -69,3 +69,13 @@ body {
     background-color: #ff2e2e;
     border: 1px solid rgb(29, 29, 29);
 }
+
+em {
+    color:#ff2e2e; 
+    font-style: normal;
+    text-decoration: underline;
+}
+
+.em2 {
+    color: green;
+}
