@@ -1,0 +1,287 @@
+* {
+    margin: auto;
+    padding: auto;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+/*------Top nav-------*/
+.top-nav {
+    display: flex;
+    background-color: #D4AF37;
+}
+
+.top-nav img {
+    width: 100px;
+    height: 100px;
+}
+
+.top-nav a {
+    height: 100px;
+}
+
+.top-nav h1 {
+    font-size: 35px;
+    letter-spacing: 1px;
+    color: #FF0000;
+}
+
+.top-nav h5 {
+    font-size: 15px;
+}
+
+/*-------------------nav links-----------*/
+.side-nav {
+    background-color: #D4AF37;
+    height: 85.6vh;
+    width: 250px;
+    margin: 0;
+    position: relative;
+}
+
+.nav-links {
+    border-collapse: collapse;
+    position: relative;
+}
+
+.nav-links tr  {
+    border-top: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.nav-links tr td {
+    padding: 5px;
+}
+
+.nav-links a{
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 5px;
+    padding: 10px 0px;
+}
+
+.nav-links img {
+    height: 30px;
+    width: 30px;
+}
+
+.others-td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.user-profile td {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.user-profile td a {
+    padding: 20px 0px !important;
+}
+
+.profile {
+    padding-right: 10px !important;
+}
+
+.sales-trans {
+    padding-right: 13px !important;
+}
+
+.inventory {
+    padding-right: 87.5px !important;
+    font-weight: 600 !important;
+}
+
+.reports {
+    padding-right: 106px !important;
+}
+
+.maintenance {
+    padding-right: 62px !important;
+}
+
+.others {
+    padding-right: 114.5px !important;
+}
+
+.nav-links a:hover {
+    color: rgba(0, 0, 0, 0.829);
+}
+
+/*----------------Bottom links----------------*/
+
+.date {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1px;
+    font-size: 17px;
+}
+
+.daily-sales {
+    width: 70%;
+    border-collapse: collapse;
+}
+
+.daily-sales img {
+    height: 20px;
+    padding-left: 10px;
+    margin-top: 3px;
+}
+
+.daily-sales tr td {
+    border: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.daily-sales .img-td {
+    border-right: none;
+}
+
+.daily-sales-text-td {
+    border-left: none !important;
+    font-size: 13px;
+    font-weight: 700;
+    color: #035A01;
+}
+
+.daily-sales-amount-td {
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 0px;
+    color: #035A01;
+}
+
+/*notice*/
+
+.notice {
+    width: 70%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.notice img {
+    height: 20px;
+    padding-left: 10px;
+    margin-top: 3px;
+}
+
+.notice tr td {
+    border: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.notice .img-td {
+    border-right: none;
+}
+
+.notice-text-td {
+    border-left: none !important;
+    font-size: 13px;
+    font-weight: 700;
+    color: red;
+}
+
+.notice-td {
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.notice-td li {
+    color: red;
+}
+
+.notice-td a {
+    color: red;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/*add-inventory*/
+
+.add-inventory-container {
+    position: absolute;
+    background-color:#D4AF37;
+    top: 190px;
+    left: 500px;
+    height: 450px;
+    width: 500px;
+    display: flex;
+    border-radius: 5px;
+    border-top: 3px solid black;
+}
+
+.add-inventory-table {
+    height: 300px;
+    width: 400px;
+    text-align: left;
+    margin-bottom: 70px;
+}
+
+.add-inventory-table input {
+    height: 40px;
+    width: 200px;
+    outline: none;
+}
+
+.add-inventory-table tr td {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.add-inventory-title {
+    position: absolute;
+    font-size: 30px;
+    top: 150px;
+    left: 520px;
+}
+
+.right {
+    text-align: right;
+}
+
+.add-inventory-add-button {
+    position: absolute;
+    margin: auto;
+    background-color: white;
+    border: 3px solid #035A01;
+    font-size: 20px;
+    padding: 5px 40px;
+    color: #035A01;
+    font-weight: 600;
+    position: absolute;
+    left: 120px;
+    bottom: 30px;
+    cursor: pointer;
+}
+
+.cancel-inventory-button {
+    position: absolute;
+    background-color: white;
+    border: 3px solid red;
+    font-size: 20px;
+    padding: 5px 30px;
+    color: red;
+    text-decoration: none;
+    font-weight: 600;
+    position: absolute;
+    left: 260px;
+    bottom: 30px;
+    cursor: pointer;
+}
+
+.add-inventory-add-button:hover {
+    background-color: rgb(228, 228, 228);
+    border: 3px solid #026400;
+    color: #026400;
+}
+
+.cancel-inventory-button:hover {
+    background-color: rgb(228, 228, 228);
+    border: 3px solid rgb(255, 11, 11);
+    color: rgb(255, 11, 11);
+}
