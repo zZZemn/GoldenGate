@@ -43,7 +43,7 @@ if (isset($_SESSION["user_id"])) {
 <head>
     <title>Inventory Maintenance</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/add-inventory.css">
+    <link rel="stylesheet" href="css/new-product.css">
 </head>
 <body>
     <?php if (isset($user)): ?>
@@ -104,58 +104,9 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </nav>
 
-        <h3 class="add-inventory-title">Add Product</h3>
-        <div class="add-inventory-container">
-        <form action="" method="post">
-            <table class="add-inventory-table">
-                <tr class="product-code-tr">
-                    <td>Product Code:</td>
-                    <td class="right">
-                        <input type="text" placeholder="Enter Product Code" name="product_code" list="product_codes">
-                        
-                            <?php 
-                                $product = "SELECT * FROM products";
-                                $product_result = $connect->query($product);
 
-                                if($product_result->num_rows > 0)
-                                {
-                                    echo "<datalist id='product_codes'>";
-
-                                    while($row = $product_result->fetch_assoc())
-                                    {
-                                        echo "<option value=".$row['pro_code'].">";
-                                    }
-                                }
-                            ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Delivery Price:</td>
-                    <td class="right"><input type="text" placeholder="Delivery Price" name="delivery_price"></td>
-                </tr>
-                <tr>
-                    <td>Quantity:</td>
-                    <td class="right"><input type="number" placeholder="Qty" name="delivery_quantity"></td>
-                </tr>
-                <tr>
-                    <td>Delivery Date:</td>
-                    <td class="right"><input type="date" name="delivery_date"></td>
-                </tr>
-                <tr>
-                    <td>Expiration Date:</td>
-                    <td class="right"><input type="date" name="expiration_date"></td>
-                </tr>
-            </table>
-            <input type="submit" class="add-inventory-add-button" name="add" value="Add">
-            <a class="cancel-inventory-button" href="inventory.php">Cancel</a>
-        </form>
-        </div>
-
-        
 
     
-        
-
     <?php else: ?>
         <div class="no-account-selected">
             <h1>No account selected</h1>

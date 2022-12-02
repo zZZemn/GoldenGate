@@ -27,9 +27,8 @@ if (isset($_SESSION["user_id"])) {
     <?php if (isset($user)): ?>
         <nav class="top-nav">
             <a href="goldengate.php"><img src="img/ggd-logo.png" alt="GGD"></a>
-            <h1>GOLDEN GATE DRUGSTORE</h1>
+            <h1>INVENTORY</h1>
             <h5><?php echo $time ?></h5>
-            <a href="logout.php">Logout</a>
         </nav>
     
         <nav class="side-nav">
