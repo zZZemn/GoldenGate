@@ -108,7 +108,7 @@ if (isset($_SESSION["user_id"])) {
                             
                             echo "<tr>
                                         <td class='action-buttons'><a href='delete-inventory-row.php?invent_no=".$row['invent_no']."'><img src='img/trash-outline.svg' alt=''></a></td>
-                                        <td class='action-buttons'><a href='#'><img src='img/create-outline.svg' alt=''></a></td>
+                                        <td class='action-buttons'><a href='edit-inventory-row.php?invent_no=".$row['invent_no']."'><img src='img/create-outline.svg' alt=''></a></td>
                                         <td>".$row['invent_no']."</td>
                                         <td>".$row['pro_code']."</td>
                                         <td>".$product_table['pro_name']."</td>

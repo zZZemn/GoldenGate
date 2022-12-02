@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins;
+}
+
+body {
+    display: flex;
+    background-color: #D4AF37;
+}
+
+.inventory-edit-container {
+    background-color: white;
+    width: 500px;
+    height: 580px;
+    display: flex;
+    position: relative;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.inventory-edit-container a {
+    position: absolute;
+    right: 0;
+    margin: 10px;
+}
+
+.inventory-edit-container a img{
+    height: 30px;
+}
+
+.inventory-edit-table-container {
+    margin: auto;
+    border-collapse: collapse;
+    margin-top: 70px;
+}
+
+.inventory-edit-table-container tr td {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+}
+
+.inventory-edit-table-container input {
+    height: 40px;
+    width: 200px;
+    font-weight: 400;
+    font-size: 15px;
+    padding-left: 5px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.63);
+}
+
+.save-btn {
+    text-align: center;
+}
+
+.save-btn td {
+    border: none !important;
+    padding-top: 30px !important;
+}
+
+.save-btn input {
+    border: 2px solid green;
+    font-weight: 500;
+    color: green;
+    cursor: pointer;
+    background-color: white;
+    width: 150px;
+}
+
+hr {
+    height: 1px;
+    width: 100%;
+    background-color: black;
+    border: none;
+}
+
+.pro_code {
+    color: rgb(0, 182, 0);
+}
