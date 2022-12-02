@@ -4,6 +4,11 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+body {
+    overflow: hidden;
+}
+
 /*------Top nav-------*/
 .top-nav {
     display: flex;
@@ -194,4 +199,73 @@
     text-decoration: none;
     font-size: 12px;
     font-weight: 500;
+}
+
+/*Inventory table*/
+
+.inventory-table-container {
+    position: absolute;
+    width: 78%;
+    height: 70%;
+    top: 120px;
+    left: 275px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    background-color: #EBEBEB;
+    border: 1px solid rgba(0, 0, 0, 0.432);
+    border-top: none !important;
+}
+
+.inventory-table{
+    position: relative;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inventory-table tr td {
+    border: 1px solid #D9D9D9;
+    color: black;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.inventory-table-top td{
+    background-color: #035A01;
+    text-align: center;
+    font-weight: 500;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white !important;
+}
+
+.table-inventory-buttons {
+    position: absolute;
+    bottom: 30px;
+    left: 275px;
+}
+
+.table-inventory-buttons a {
+    background-color: #035A01;
+    font-size: 15px;
+    padding: 10px 50px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.table-inventory-buttons a:hover {
+    background-color: #026e00;
+}
+
+.action-buttons {
+    border-right: none !important;
+    border-left: none !important;
+    padding-top: 5px;
+}
+
+.action-buttons img{
+    height: 20px;
 }

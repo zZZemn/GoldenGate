@@ -9,6 +9,9 @@ if (isset($_SESSION["user_id"])) {
             WHERE user_no = {$_SESSION["user_id"]}";
     $result = $connect->query($sql);
     $user = $result->fetch_assoc();
+
+    $inventory = "SELECT * FROM inventory ORDER by ex_date";
+    $inventory_result = $connect->query($inventory);
 }
 
 ?>
@@ -28,7 +31,7 @@ if (isset($_SESSION["user_id"])) {
             <h5><?php echo $time ?></h5>
             <a href="logout.php">Logout</a>
         </nav>
-
+    
         <nav class="side-nav">
             <table class="nav-links">
                 <tr class="user-profile">
@@ -79,6 +82,56 @@ if (isset($_SESSION["user_id"])) {
                 </tr>
             </table>
         </nav>
+
+        <div class="inventory-table-container">
+            <table class="inventory-table">
+                <tr class="inventory-table-top">
+                    <td colspan="2">Action</td>
+                    <td>ID</td>
+                    <td>Product Code</td>
+                    <td>Product Name</td>
+                    <td>Delivery Price</td>
+                    <td>Selling Price</td>
+                    <td>Quantity</td>
+                    <td>Delivery Date</td>
+                    <td>Expiration Date</td>
+                </tr>
+
+                <?php 
+                    if($inventory_result->num_rows > 0)
+                    {
+                        while($row = $inventory_result->fetch_assoc())
+                        {
+                            $product = "SELECT * FROM products
+                            WHERE pro_code = $row[pro_code]";
+                            $product_result = $connect->query($product);
+                            $product_table = $product_result->fetch_assoc();
+                            
+                            echo "<tr>
+                                        <td class='action-buttons'><a href='#'><img src='img/trash-outline.svg' alt=''></a></td>
+                                        <td class='action-buttons'><a href='#'><img src='img/create-outline.svg' alt=''></a></td>
+                                        <td>".$row['invent_no']."</td>
+                                        <td>".$row['pro_code']."</td>
+                                        <td>".$product_table['pro_name']."</td>
+                                        <td>".$row['del_price']."</td>
+                                        <td>".$product_table['price']."</td>
+                                        <td>".$row['del_qty']."</td>
+                                        <td>".$row['del_date']."</td>
+                                        <td>".$row['ex_date']."</td>
+                                    </tr>";
+                        }
+                    }
+                ?>
+                
+                
+            </table>
+        </div>
+
+        <div class="table-inventory-buttons">
+            <a href="#">Add Product</a>
+            <a href="#">Report</a>
+        </div>
+    
         
 
     <?php else: ?>
