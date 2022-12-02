@@ -9,19 +9,18 @@ if (isset($_SESSION["user_id"])) {
             WHERE user_no = {$_SESSION["user_id"]}";
     $result = $connect->query($sql);
     $user = $result->fetch_assoc();
-
-    $inventory = "SELECT * FROM inventory ORDER by ex_date";
-    $inventory_result = $connect->query($inventory);
 }
 
+    $products = "SELECT * FROM products ORDER by pro_name";
+    $products_result = $connect->query($products);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inventory</title>
+    <title>Products</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/inventory.css">
+    <link rel="stylesheet" href="css/products.css">
 </head>
 <body>
     <?php if (isset($user)): ?>
@@ -31,7 +30,7 @@ if (isset($_SESSION["user_id"])) {
             <h5><?php echo $time ?></h5>
             <a href="logout.php">Logout</a>
         </nav>
-    
+
         <nav class="side-nav">
             <table class="nav-links">
                 <tr class="user-profile">
@@ -87,37 +86,28 @@ if (isset($_SESSION["user_id"])) {
             <table class="inventory-table">
                 <tr class="inventory-table-top">
                     <td colspan="2">Action</td>
-                    <td>ID</td>
                     <td>Product Code</td>
                     <td>Product Name</td>
-                    <td>Delivery Price</td>
+                    <td>Product Category</td>
+                    <td>Measurement/Size</td>
                     <td>Selling Price</td>
                     <td>Quantity</td>
-                    <td>Delivery Date</td>
-                    <td>Expiration Date</td>
                 </tr>
 
                 <?php 
-                    if($inventory_result->num_rows > 0)
+                    if($products_result->num_rows > 0)
                     {
-                        while($row = $inventory_result->fetch_assoc())
-                        {
-                            $product = "SELECT * FROM products
-                            WHERE pro_code = $row[pro_code]";
-                            $product_result = $connect->query($product);
-                            $product_table = $product_result->fetch_assoc();
-                            
+                        while($row = $products_result->fetch_assoc())
+                        {   
                             echo "<tr>
                                         <td class='action-buttons'><a href='#'><img src='img/trash-outline.svg' alt=''></a></td>
                                         <td class='action-buttons'><a href='#'><img src='img/create-outline.svg' alt=''></a></td>
-                                        <td>".$row['invent_no']."</td>
                                         <td>".$row['pro_code']."</td>
-                                        <td>".$product_table['pro_name']."</td>
-                                        <td>".$row['del_price']."</td>
-                                        <td>".$product_table['price']."</td>
-                                        <td>".$row['del_qty']."</td>
-                                        <td>".$row['del_date']."</td>
-                                        <td>".$row['ex_date']."</td>
+                                        <td>".$row['pro_name']."</td>
+                                        <td>".$row['pro_category']."</td>
+                                        <td>".$row['measurement']."</td>
+                                        <td>".$row['price']."</td>
+                                        <td>".$row['quantity']."</td>
                                     </tr>";
                         }
                     }
@@ -125,13 +115,7 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </div>
 
-        <div class="table-inventory-buttons">
-            <a href="add-inventory.php">Add Product</a>
-            <a href="products.php">View Products</a> 
-            <a href="#">Report</a> 
-        </div>
-    
-        
+        <a href="logout.php">Logout</a>
 
     <?php else: ?>
         <div class="no-account-selected">
