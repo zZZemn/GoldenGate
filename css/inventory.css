@@ -27,7 +27,8 @@ body {
 .top-nav h1 {
     font-size: 35px;
     letter-spacing: 2px;
-    color: #FF0000;
+    color: #03a100;
+    text-shadow: 2px 2px 2px black;
 }
 
 .top-nav h5 {

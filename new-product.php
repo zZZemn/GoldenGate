@@ -10,29 +10,37 @@ if (isset($_SESSION["user_id"])) {
     $result = $connect->query($sql);
     $user = $result->fetch_assoc();
 
-    
-    
-    if(isset($_POST['add']))
+    if(isset($_POST['save']))
     {
         
-        $pro_code = $_POST['product_code'];
-        $del_price = $_POST['delivery_price'];
-        $quantity = $_POST['delivery_quantity'];
-        $del_date = $_POST['delivery_date'];
-        $ex_date = $_POST['expiration_date'];
+        $pro_code = $_POST['pro_code'];
+        $pro_name = $_POST['pro_name'];
+        $pro_cat = $_POST['pro_categories'];
+        $pro_measurement = $_POST['pro_measurement'];
+        $selling_price = $_POST['pro_selling_price'];
 
-        $add_query = "INSERT INTO inventory(`del_price`, `del_qty`, `ex_date`, `del_date`, `pro_code`) VALUES ('$del_price','$quantity','$ex_date','$del_date','$pro_code')";
-        $adding_products_qty = "UPDATE products SET `quantity` = quantity+$quantity WHERE pro_code = $pro_code";
-    
-            if($connect->query($add_query) == true && $connect->query($adding_products_qty) == true)
-                {
-                    header("location: inventory.php");
-                }
-        
-            else
-                {
-                    echo '<script type="text/javascript">alert("Invalid Input!");</script>';     
-                }
+        $del_price = $_POST['del_price'];
+        $quantity = $_POST['del_quan'];
+        $ex_date = $_POST['ex_date'];
+        $del_date = $_POST['del_date'];
+
+        $insertToTBLInventory = "INSERT INTO inventory (`del_price`, `del_qty`, `ex_date`, `del_date`, `pro_code`) 
+                                VALUES ('$del_price','$quantity','$ex_date','$del_date', '$pro_code')";
+
+        $insertToTBLProducts = "INSERT INTO products(`pro_name`, `pro_code`, `pro_category`, `measurement`, `price`, `quantity`) 
+                                VALUES ('$pro_name','$pro_code','$pro_cat','$pro_measurement','$selling_price','$quantity')";
+
+        $insertingToProducts = $connect->query($insertToTBLProducts);
+        $insertingToInventory = $connect->query($insertToTBLInventory);
+
+        if($insertingToProducts == true && $insertToTBLInventory == true)
+            {
+              header("location: products.php");
+            }
+        else
+            {
+                echo "invalid";
+            }
     }
 }
 
@@ -49,7 +57,7 @@ if (isset($_SESSION["user_id"])) {
     <?php if (isset($user)): ?>
         <nav class="top-nav">
             <a href="goldengate.php"><img src="img/ggd-logo.png" alt="GGD"></a>
-            <h1>GOLDEN GATE DRUGSTORE</h1>
+            <h1>ADD NEW PRODUCT</h1>
             <h5><?php echo $time ?></h5>
         </nav>
     
@@ -104,7 +112,60 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </nav>
 
+        <h3 class="add-product-title">Insert New Product</h3>
+            <table class="add-product-table">
+                <form action="" method="post">
+                    <tr>
+                        <td class="close" colspan="4"><a href="products.php"><img src="img/close-circle.svg" alt=""></a></td>
+                    </tr>
 
+                    <tr>
+                        <td>Product Name:</td>
+                        <td><input type="text" name="pro_name" required></td>
+                        
+                        <td>Delivery Price:</td>
+                        <td><input type="number" name="del_price" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Product Code:</td>
+                        <td><input type="text" name="pro_code" required></td>
+                        
+                        <td>Delivery Quantity:</td>
+                        <td><input type="number" name="del_quan" required></td>
+                    </tr>
+
+                    
+                    <tr>
+                        <td>Product Category:</td>
+                        <td>
+                            <select name="pro_categories">
+                                <option value="Medicine">Medicine</option>
+                                <option value="Goods">Goods</option>
+                            </select>
+                        </td>
+                        
+                        <td>Delivery Date:</td>
+                        <td><input type="date" name="del_date"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Measurement:</td>
+                        <td><input type="text" name="pro_measurement" required></td>
+
+                        <td>Expiration Date:</td>
+                        <td><input type="date" name="ex_date"></td>
+                    </tr>
+                    
+                    <tr class="selling-price-tr">
+                        <td>Selling Price:</td>
+                        <td><input type="number" name="pro_selling_price" required></td>
+                        <td class="button-td" colspan="2">
+                            <input class="button-submit" type="submit" value="Save" name="save">
+                        </td>
+                    </tr>
+                </form>
+            </table>
 
     
     <?php else: ?>
