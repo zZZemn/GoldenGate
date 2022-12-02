@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins;
+}
+
+body {
+    background-color: #D4AF37;
+    display: flex;
+}
+
+.delete-inventory {
+    background-color: white;
+    width: 700px;
+    height: 300px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding-top: 30px;
+    border-radius: 3px;
+}
+
+.delete-inventory img {
+    height: 50px;
+}
+
+.delete-inventory h5 {
+    font-size: 15px;
+}
+
+.delete-inventory hr {
+    background-color: rgb(0, 0, 0);
+    height: 1px;
+    width: 90%;
+    border: none;
+}
+
+.delete-inventory div {
+    margin-top: 40px;
+}
+
+.delete-inventory div a {
+    padding: 10px 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.confirm {
+    background-color: green;
+    border: 1px solid black;
+}
+
+.cancel {
+    background-color: red;
+    border: 1px solid black;
+}
+
+.confirm:hover {
+    background-color: rgb(0, 134, 0);
+    border: 1px solid rgb(27, 27, 27);
+}
+
+.cancel:hover {
+    background-color: #ff2e2e;
+    border: 1px solid rgb(29, 29, 29);
+}

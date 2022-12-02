@@ -99,7 +99,7 @@ if (isset($_SESSION["user_id"])) {
                         while($row = $products_result->fetch_assoc())
                         {   
                             echo "<tr>
-                                        <td class='action-buttons'><a href='#'><img src='img/trash-outline.svg' alt=''></a></td>
+                                        <td class='action-buttons'><a href='delete-product-row.php?pro_code=".$row['pro_code']."'><img src='img/trash-outline.svg' alt=''></a></td>
                                         <td class='action-buttons'><a href='#'><img src='img/create-outline.svg' alt=''></a></td>
                                         <td>".$row['pro_code']."</td>
                                         <td>".$row['pro_name']."</td>

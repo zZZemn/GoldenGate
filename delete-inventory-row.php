@@ -23,7 +23,7 @@
                 <h5>Are you sure that you want to delete ".$product_row['pro_name']."<br>That delivered on ".$row['del_date']."?</h5>
                 <hr>
                 <div>
-                <a href='delete-row-process.php?id=".$row['invent_no']."' class='confirm'>Confirm</a>
+                <a href='delete-inventory-row-process.php?id=".$row['invent_no']."' class='confirm'>Confirm</a>
                 <a href='inventory.php' class='cancel'>Cancel</a>
                 <div>
             </div>
