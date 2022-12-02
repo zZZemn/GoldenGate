@@ -14,7 +14,7 @@
             <head>
             <div class='delete-inventory'>
                 <img src='img/alert-circle-outline.svg'>
-                <h5>Are you sure that you want to delete ".$row['pro_name']."in Product your list?</h5>
+                <h5>Are you sure that you want to delete <em>".$row['pro_name']."</em> in Product your list?</h5>
                 <hr>
                 <div>
                 <a href='delete-product-row-process.php?id=".$row['pro_code']."' class='confirm'>Confirm</a>
