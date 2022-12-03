@@ -51,7 +51,8 @@ nav h5 {
 
 .main-pos {
     position: relative;
-    background-color: rgb(148, 148, 148);
+    background-color: rgb(236, 236, 236);
+    border:1px solid #D4AF37;
     padding: 10px;
     width: 700px;
     height: 100%;
@@ -97,12 +98,19 @@ nav h5 {
 
 /*--------------------------*/
 
+.receipt-container {
+    position: relative;
+    overflow: scroll;
+    height: 80%;
+}
+
 .receipt-table {
+    position: absolute;
     margin-top: 10px;
     width: 100%;
     overflow: auto;
     border-collapse: collapse;
-    border: 1px solid white;
+    border: none;
 }
 
 .receipt-table th {
@@ -112,12 +120,15 @@ nav h5 {
     font-size: 15px;
     font-weight: 500;
     padding: 5px 0px;
+    position: sticky;
+    top: 0;
 }
 
 .product-adding td input {
     height: 30px;
     outline: none;
     text-align: center;
+    border: 1px solid black;
 }
 
 .product_td input {

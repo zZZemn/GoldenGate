@@ -9,7 +9,29 @@ if (isset($_SESSION["user_id"])) {
             WHERE user_no = {$_SESSION["user_id"]}";
     $result = $connect->query($sql);
     $user = $result->fetch_assoc();
-}
+    }
+
+    if(isset($_POST['add'])) {
+        $cust_id = $_POST['customer_id'];
+        $pro_code = $_POST['pro_code'];
+        $quantity = $_POST['qty'];
+
+        $tblproduct = "SELECT * FROM products where pro_code = $pro_code";
+        $tblproductres = $connect->query($tblproduct);
+        $product = $tblproductres->fetch_assoc();
+
+        $product_name = $product['pro_name'];
+        $product_meas = $product['measurement'];
+        $product_price = $product['price'];
+
+        $amount = $product_price * $quantity;
+
+        $tblPOS = "INSERT INTO current_pos_operation(`pro_name`, `measurement`, `pro_price`, `qty`, `amount`, `cust_id`) 
+        VALUES ('$product_name','$product_meas','$product_price','$quantity',' $amount','$cust_id')";
+
+        $connect->query($tblPOS);
+
+    }
 
 ?>
 
@@ -92,28 +114,43 @@ if (isset($_SESSION["user_id"])) {
                         </table>
                     </form>
 
-                    <form action="" method="post">
-                        <table class="receipt-table" border="1">
-                            <tr>
-                                <th>Product</th>
-                                <th>Measurement</th>
-                                <th>Price</th>
-                                <th>Qty</th>
-                                <th>Amount</th>
-                                <th colspan="2">Action</th>
-                            </tr>
+                    <div class="receipt-container">
+                        <form action="" method="post">
+                            <table class="receipt-table" border="1">
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Measurement</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Amount</th>
+                                    <th colspan="2">Action</th>
+                                </tr>
 
-                            <tr class="product-adding">
-                                <td class="product_td"><input readonly type="text"></td>
-                                <td class="meas_td"><input readonly type="text"></td>
-                                <td class="price_td"><input readonly type="text"></td>
-                                <td class="qty_td"><input readonly type="text"></td>
-                                <td class="amount_td"><input readonly type="text"></td>
-                                <td class="action-btn"><a readonly href="#"><img src="img/create.svg" alt=""></a></td>
-                                <td class="action-btn"><a readonly href="#"></a><img src="img/trash.svg" alt=""></td>
-                            </tr> 
-                        </table>
-                    </form>
+                            <?php
+                                    $pos = "SELECT * FROM current_pos_operation";
+                                    $pos_res = $connect->query($pos);
+
+                                        if($pos_res->num_rows > 0)
+                                            {
+                                                while($posrow = $pos_res->fetch_assoc())
+                                                {
+                                                echo "
+                                                    <tr class='product-adding'>
+                                                    <td class='product_td'><input readonly type='text' name='pro_name' value=" . $posrow['pro_name'] . "></td>
+                                                    <td class='meas_td'><input readonly type='text' name='measurement' value=" . $posrow['measurement'] . "></td>
+                                                    <td class='price_td'><input readonly type='text' name='price' value=" . $posrow['pro_price'] . "></td>
+                                                    <td class='qty_td'><input readonly type='text' name='quantity' value=" . $posrow['qty'] . "></td>
+                                                    <td class='amount_td'><input readonly type='text' name='amout' value=" . $posrow['amount'] . "></td>
+                                                    <td class='action-btn'><a href='#'><img src='img/create.svg' alt=''></a></td>
+                                                    <td class='action-btn'><a href='delete-pos-row.php?row_no=".$posrow['row']."'><img src='img/trash.svg' alt=''></a></td>
+                                                    </tr>";
+                                                }
+                                            }
+                            ?>
+                                    
+                            </table>
+                        </form>
+                    </div>
 
             </div>
         </div>
@@ -124,5 +161,12 @@ if (isset($_SESSION["user_id"])) {
             <p class="Login"><a href="index.php">Login</a>
         </div>
     <?php endif; ?>
+    
+    <script>
+    if ( window.history.replaceState ) 
+        {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
 </body>
 </html>
