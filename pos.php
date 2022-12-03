@@ -146,10 +146,37 @@ if (isset($_SESSION["user_id"])) {
                                                 }
                                             }
                             ?>
-                                    
                             </table>
-                        </form>
-                    </div>
+                        </div>
+                        
+                        <table class="pos-btns-table">
+                            <tr>
+                                <th>VAT</th>
+                                <th>TOTAL</th>
+                                <th>CHANGE</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="vat" placeholder="VAT" readonly></td>
+                                <td><input type="text" name="total" placeholder="Total" readonly></td>
+                                <td><input type="text" name="change" placeholder="Change" readonly></td>
+                                <td><button class="btn">Print</button></td>
+                            </tr>
+                            
+                            <tr>
+                                <th>DISCOUNT</th>
+                                <th>SUBTOTAL</th>
+                                <th>PAYMENT</th>
+                                <td><input class="btn" type="submit" name="settle" value="Settle"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="discount" placeholder="Discount" readonly></td>
+                                <td><input type="text" name="subtotal" placeholder="Subtotal" readonly></td>
+                                <td><input type="text" name="payment" placeholder="Payment"></td>
+                                <td><input class="btn" type="submit" name="settle" value="Cancel"></td>
+                            </tr>
+                        </table>
+                    </form>
 
             </div>
         </div>
