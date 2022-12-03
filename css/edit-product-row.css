@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins;
+}
+
+body {
+    background-color: #D4AF37;
+    display: flex;
+}
+
+.edit-product-containter {
+    position: relative;
+    height: 550px;
+    width: 650px;
+    background-color: white;
+    display: flex;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.edit-product-containter table {
+    margin: auto;
+    height: 80%;
+    width: 70%;
+}
+
+.edit-product-containter table input {
+    height: 30px;
+    width: 200px;
+    padding-left: 5px;
+    border: 1px solid black;
+    outline: none;
+}
+
+.edit-product-containter table select {
+    height: 30px;
+    width: 200px;
+    padding-left: 5px;
+    border: 1px solid black;
+}
+
+.edit-product-containter table tr td {
+    padding-bottom: 20px;
+}
+
+.head td{
+    font-size: 15px;
+    height: 10px;
+    font-weight: 600;
+    padding: 0 !important;
+}
+
+.btn1 {
+    border: 1px solid #035A01 !important;
+    font-size: 15px !important;
+    font-weight: 600px !important;
+    background-color: white;
+    color: #035A01;
+    font-weight: 600;
+    height: 43px !important;
+    width: 100px !important;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.btn td a { 
+    border: 1px solid #FF0303;
+    font-size: 15px !important;
+    font-weight: 600px !important;
+    background-color: white;
+    color: #FF0303;
+    text-decoration: none;
+    font-weight: 600;
+    height: 30px !important;
+    padding: 10px 30px;
+    margin: 10px;   
+}
+
+.b0 {
+    text-align: right;
+}
+
+th {
+    padding-bottom: 30px;
+    font-size: 25px;
+    color: #035A01;
+    text-shadow: 1px 1px 1px black;
+}
