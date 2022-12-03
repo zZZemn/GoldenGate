@@ -94,6 +94,12 @@ nav h5 {
     padding: 0;
     color: green;
     border: 1px solid green;
+    cursor: pointer;
+}
+
+.btn input:hover {
+    background-color: #035A01;
+    color: white;
 }
 
 /*--------------------------*/
