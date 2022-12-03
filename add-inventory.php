@@ -104,15 +104,21 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </nav>
 
-        <h3 class="add-inventory-title">Add Product</h3>
         <div class="add-inventory-container">
-        <form action="" method="post">
-            <table class="add-inventory-table">
-                <tr class="product-code-tr">
-                    <td>Product Code:</td>
-                    <td class="right">
-                        <input type="text" placeholder="Enter Product Code" name="product_code" list="product_codes">
-                        
+            <form action="" method="post">
+                <table class="add-inventory-table">
+                    <tr>
+                        <th colspan="2">
+                            <h3 class="add-inventory-title">Add Product</h3>
+                        </th>
+                    </tr>
+
+                    <tr class="head">
+                        <td>Product Code:</td>
+                        <td>Date Delivered:</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Enter Product Code" name="product_code" list="product_codes">
                             <?php 
                                 $product = "SELECT * FROM products";
                                 $product_result = $connect->query($product);
@@ -127,23 +133,23 @@ if (isset($_SESSION["user_id"])) {
                                     }
                                 }
                             ?>
-                    </td>
+                        <td class="right"><input type="date" name="delivery_date"></td>
                 </tr>
-                <tr>
-                    <td>Capital:</td>
-                    <td class="right"><input type="text" placeholder="Delivery Price" name="delivery_price"></td>
-                </tr>
-                <tr>
+
+                <tr class="head">
                     <td>Quantity:</td>
-                    <td class="right"><input type="number" placeholder="Qty" name="delivery_quantity"></td>
-                </tr>
-                <tr>
-                    <td>Date Delivered:</td>
-                    <td class="right"><input type="date" name="delivery_date"></td>
-                </tr>
-                <tr>
                     <td>Expiration Date:</td>
+                </tr>
+                <tr>
+                    <td class="right"><input type="number" placeholder="Qty" name="delivery_quantity"></td>
                     <td class="right"><input type="date" name="expiration_date"></td>
+                </tr>
+                
+                <tr class="head">
+                    <td>Capital:</td>
+                </tr>
+                <tr>
+                    <td class="right"><input type="text" placeholder="Price" name="delivery_price"></td>
                 </tr>
             </table>
             <input type="submit" class="add-inventory-add-button" name="add" value="Add">

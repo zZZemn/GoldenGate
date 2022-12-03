@@ -203,66 +203,70 @@ body {
 
 /*add-product*/
 
-.add-product-table {
-    border-collapse: collapse;
-    position: absolute;
-    width: 1025px;
-    top: 150px;
-    left: 295px;
-    background-color: #D4AF37;
-    height: 500px;
-    border-radius: 5px;
-}
-
-.add-product-table tr td {
-    font-size: 18px;
-    font-weight: 600;
-    padding-left: 15px;
-}
-
-.add-product-table tr td input {
-    height: 40px;
-    width: 300px;
-    outline: none;
-    font-size: 15px;
-    padding-left: 5px;
-}
-
-.add-product-table tr td select {
-    height: 40px;
-    width: 300px;
-    outline: none;
-    font-size: 15px;
-    padding-left: 5px;
-}
-
 .add-product-table img {
     height: 30px;
 }
 
-.close {
-    height: 40px;
-    padding: 10px !important;
+.add-product-table {
+    position: absolute;
+    background-color: #D4AF37;
+    left: 500px;
+    top: 160px;
+    padding-bottom: 30px;
+    padding-top: 10px;
+    border-radius: 10px;
 }
 
-.selling-price-tr td{
-    padding-bottom: 20px;
+.add-product-table td {
+    width: 300px;
+    height: 20px;
+    padding-left: 40px;
+}
+
+.head td{
+    font-size: 15px;
+    font-weight: 500;
+    padding-top: 20px;
+}
+
+.add-product-table input {
+    height: 30px;
+    width: 200px;
+    outline: none;
+    border: 1px solid black;
+    padding-left: 5px;
+}
+
+.add-product-table select {
+    height: 30px;
+    width: 200px;
+    outline: none;
+    border: 1px solid black;
+    padding-left: 5px;
 }
 
 .button-td {
     text-align: center;
+    padding: 0 !important;
 }
 
-.button-submit {
-    border: 3px solid #035A01;
+.button-td input {
+    border: 1px solid #035A01;
     color: #035A01;
+    font-weight: 500;
+    width: 100px;
+    background-color: white;
     cursor: pointer;
-    width: 150px !important;
-    font-size: 18px;
-    font-weight: 600;
 }
 
-.button-submit:hover {
-    border: 3px solid #027700;
-    color: #027e00;
+.button-td input:hover {
+    border:1px solid #ffffff;
+    color: white;
+    background-color: #035A01;
+    font-weight: 400;
+}
+
+.close {
+    padding-right: 10px !important;
+    text-align: right;
 }

@@ -32,39 +32,35 @@
         <?php if (isset($user)): ?>
             <div class="inventory-edit-container">
                 <a href="inventory.php"><img src="img/close-circle.svg" alt=""></a>
+                <form action="edit-inventory-row-process.php" method="post">
                 <table class="inventory-edit-table-container">
-                    <tr>
-                        <td>Product Code</td>
+                    <tr class="heading">
+                        <th>Edit Inventory Row</th>
+                        <td><input readonly name="invent_id" type="text" value="<?php echo $row['invent_no']?>"></td>
+                    </tr>
+                    
+                    <tr class="pro_code_name">
+                        <td><?php echo $prod_row['pro_name']?></td>
                         <td class="pro_code"><?php echo $row['pro_code']?></td>
                     </tr>
 
-                    <tr>
-                        <td>Product Name</td>
-                        <td><?php echo $prod_row['pro_name']?></td>
-                    </tr>
-
-                    <form action="edit-inventory-row-process.php" method="post">
-                    <tr>
-                        <td>Inventory ID</td>
-                        <td><input readonly name="invent_id" type="text" value="<?php echo $row['invent_no']?>"></td>
-                    </tr>
-                        <tr>
-                            <td>Delivery Price</td>
-                            <td><input name="del_price" type="text" value="<?php echo $row['del_price'];?>"></td>
+                        <tr class="head">
+                            <td>Capital</td>
+                            <td>Delivered Quantity</td>
                         </tr>
-
+                        
                         <tr>
-                            <td>Delivery Quantity</td>
+                            <td><input name="del_price" type="text" value="<?php echo $row['del_price'];?>"></td>
                             <td><input name="del_qty" type="text" value="<?php echo $row['del_qty'];?>"></td>
                         </tr>
-
-                        <tr>
+                        
+                        <tr class="head">
                             <td>Delivery Date</td>
-                            <td><input name="del_date" type="date" value="<?php echo $row['del_date'];?>"></td>
-                        </tr>
-
-                        <tr>
                             <td>Expiration Date</td>
+                        </tr>
+                        
+                        <tr>
+                            <td><input name="del_date" type="date" value="<?php echo $row['del_date'];?>"></td>
                             <td><input name="ex_date" type="date" value="<?php echo $row['ex_date'];?>"></td>
                         </tr>
                         

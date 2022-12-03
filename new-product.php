@@ -1,9 +1,12 @@
 <?php 
 include("time&date.php");
 session_start();
+include("database.php");
+
+$pro_cat = "SELECT * FROM productcategories";
+$cat_result = $connect->query($pro_cat);
 
 if (isset($_SESSION["user_id"])) {
-    include("database.php");
 
     $sql = "SELECT * FROM user
             WHERE user_no = {$_SESSION["user_id"]}";
@@ -112,60 +115,71 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </nav>
 
-        
-            <table class="add-product-table">
-                <form action="" method="post">
-                    <tr>
-                        <td class="close" colspan="4"><a href="products.php"><img src="img/close-circle.svg" alt=""></a></td>
-                    </tr>
+        <table class="add-product-table">
+            <form action="" method="post">
+                <tr>
+                    <td class="close" colspan="2"><a href="products.php"><img src="img/close-circle.svg" alt=""></a></td>
+                </tr>
 
-                    <tr>
-                        <td>Product Name:</td>
-                        <td><input type="text" name="pro_name" required></td>
-                        
-                        <td>Capital:</td>
-                        <td><input type="number" name="del_price" required></td>
-                    </tr>
+                <tr class="head">
+                    <td>Product Name</td>
+                    <td>Capital</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="pro_name" required></td>
+                    <td><input type="number" name="del_price" required></td>
+                </tr>
 
-                    <tr>
-                        <td>Product Code:</td>
-                        <td><input type="text" name="pro_code" required></td>
-                        
-                        <td>Delivery Quantity:</td>
-                        <td><input type="number" name="del_quan" required></td>
-                    </tr>
+                <tr class="head">
+                    <td>Product Code</td>
+                    <td>Delivered Quantity</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="pro_code" required></td>
+                    <td><input type="number" name="del_quan" required></td>
+                </tr>
 
-                    
-                    <tr>
-                        <td>Product Category:</td>
-                        <td>
-                            <select name="pro_categories">
-                                <option value="Medicine">Medicine</option>
-                                <option value="Goods">Goods</option>
-                            </select>
-                        </td>
-                        
-                        <td>Delivery Date:</td>
-                        <td><input type="date" name="del_date"></td>
-                    </tr>
+                <tr class="head">
+                    <td>Product Category</td>
+                    <td>Date Delivered</td>
+                </tr>
+                <tr>
+                    <td>
+                    <select name="pro_categories">
+                    <?php 
+                        if($cat_result->num_rows > 0)
+                          {
+                            while ($cat_row = $cat_result->fetch_assoc())
+                                  {
+                                    echo "<option value=".$cat_row['pro_category'].">".$cat_row['pro_category']."</option>";
+                                    }
+                            }
+                    ?>
+                    </td>
+                    <td><input type="date" name="del_date"></td>
+                </tr>
 
-                    <tr>
-                        <td>Measurement:</td>
-                        <td><input type="text" name="pro_measurement" required></td>
+                <tr class="head">
+                    <td>Measurement:</td>
+                    <td>Expiration Date:</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="pro_measurement" required></td>
+                    <td><input type="date" name="ex_date"></td>
+                </tr>
+                
+                <tr class="head">
+                    <td>Selling Price</td>
+                </tr>
+                <tr>
+                    <td><input type="number" name="pro_selling_price" required></td>
+                    <td class="button-td" rowspan="2">
+                        <input class="button-submit" type="submit" value="Save" name="save">
+                    </td>
+                </tr>
 
-                        <td>Expiration Date:</td>
-                        <td><input type="date" name="ex_date"></td>
-                    </tr>
-                    
-                    <tr class="selling-price-tr">
-                        <td>Selling Price:</td>
-                        <td><input type="number" name="pro_selling_price" required></td>
-                        <td class="button-td" colspan="2">
-                            <input class="button-submit" type="submit" value="Save" name="save">
-                        </td>
-                    </tr>
-                </form>
-            </table>
+            </form>
+        </table>
 
     
     <?php else: ?>
