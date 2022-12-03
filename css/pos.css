@@ -107,7 +107,7 @@ nav h5 {
 .receipt-container {
     position: relative;
     overflow: scroll;
-    height: 80%;
+    height: 65%;
 }
 
 .receipt-table {
@@ -130,11 +130,16 @@ nav h5 {
     top: 0;
 }
 
+.product-adding td {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
 .product-adding td input {
     height: 30px;
     outline: none;
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
 }
 
 .product_td input {
@@ -151,8 +156,21 @@ nav h5 {
 
 .qty_td input {
     width: 80px;
+    color: #FF0000;
+    font-weight: 400;
 }
 
 .amount_td input {
-    width: 100%;
+    width: 100px;
+    color: #035A01;
+    font-weight: 500;
+}
+
+.action-btn {
+    width: 60px;
+    text-align: center;
+}
+
+.action-btn img {
+    height: 20px;
 }

@@ -139,9 +139,8 @@ if (isset($_SESSION["user_id"])) {
                                                     <td class='product_td'><input readonly type='text' name='pro_name' value=" . $posrow['pro_name'] . "></td>
                                                     <td class='meas_td'><input readonly type='text' name='measurement' value=" . $posrow['measurement'] . "></td>
                                                     <td class='price_td'><input readonly type='text' name='price' value=" . $posrow['pro_price'] . "></td>
-                                                    <td class='qty_td'><input readonly type='text' name='quantity' value=" . $posrow['qty'] . "></td>
+                                                    <td class='qty_td'><input type='number' name='quantity' value=" . $posrow['qty'] . "></td>
                                                     <td class='amount_td'><input readonly type='text' name='amout' value=" . $posrow['amount'] . "></td>
-                                                    <td class='action-btn'><a href='#'><img src='img/create.svg' alt=''></a></td>
                                                     <td class='action-btn'><a href='delete-pos-row.php?row_no=".$posrow['row']."'><img src='img/trash.svg' alt=''></a></td>
                                                     </tr>";
                                                 }
