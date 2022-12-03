@@ -89,10 +89,10 @@ if (isset($_SESSION["user_id"])) {
                     <td>ID</td>
                     <td>Product Code</td>
                     <td>Product Name</td>
-                    <td>Delivery Price</td>
+                    <td>Capital</td>
                     <td>Selling Price</td>
                     <td>Quantity</td>
-                    <td>Delivery Date</td>
+                    <td>Date Delivered</td>
                     <td>Expiration Date</td>
                 </tr>
 

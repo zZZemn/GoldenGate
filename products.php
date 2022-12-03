@@ -87,7 +87,7 @@ if (isset($_SESSION["user_id"])) {
                     <td colspan="2">Action</td>
                     <td>Product Code</td>
                     <td>Product Name</td>
-                    <td>Product Category</td>
+                    <td>Category</td>
                     <td>Measurement/Size</td>
                     <td>Selling Price</td>
                     <td>Quantity</td>
@@ -100,7 +100,7 @@ if (isset($_SESSION["user_id"])) {
                         {   
                             echo "<tr>
                                         <td class='action-buttons'><a href='delete-product-row.php?pro_code=".$row['pro_code']."'><img src='img/trash-outline.svg' alt=''></a></td>
-                                        <td class='action-buttons'><a href='#'><img src='img/create-outline.svg' alt=''></a></td>
+                                        <td class='action-buttons'><a href='edit-product-row.php?pro_code=".$row['pro_code']."'><img src='img/create-outline.svg' alt=''></a></td>
                                         <td>".$row['pro_code']."</td>
                                         <td>".$row['pro_name']."</td>
                                         <td>".$row['pro_category']."</td>

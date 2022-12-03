@@ -130,7 +130,7 @@ if (isset($_SESSION["user_id"])) {
                     </td>
                 </tr>
                 <tr>
-                    <td>Delivery Price:</td>
+                    <td>Capital:</td>
                     <td class="right"><input type="text" placeholder="Delivery Price" name="delivery_price"></td>
                 </tr>
                 <tr>
@@ -138,7 +138,7 @@ if (isset($_SESSION["user_id"])) {
                     <td class="right"><input type="number" placeholder="Qty" name="delivery_quantity"></td>
                 </tr>
                 <tr>
-                    <td>Delivery Date:</td>
+                    <td>Date Delivered:</td>
                     <td class="right"><input type="date" name="delivery_date"></td>
                 </tr>
                 <tr>

@@ -112,7 +112,7 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </nav>
 
-        <h3 class="add-product-title">Insert New Product</h3>
+        
             <table class="add-product-table">
                 <form action="" method="post">
                     <tr>
@@ -123,7 +123,7 @@ if (isset($_SESSION["user_id"])) {
                         <td>Product Name:</td>
                         <td><input type="text" name="pro_name" required></td>
                         
-                        <td>Delivery Price:</td>
+                        <td>Capital:</td>
                         <td><input type="number" name="del_price" required></td>
                     </tr>
 
