@@ -23,9 +23,11 @@ if (isset($_SESSION["user_id"])) {
 <body>
     <?php if (isset($user)): ?>
         <nav>
-            <img src="img/ggd-logo-plain.png" alt="GGD">
-            <h3>GOLDEN GATE DRUGSTORE</h3>
+            <img src="img/ggd-logo-plain.png" alt="GGD" class="logo">
+            <h3 class="store-name">GOLDEN GATE DRUGSTORE</h3>
             <h5><?php echo $time?> - <?php echo $date; ?></h5>
+            
+            <div class="name">
             <h3><?php echo $user['f_name']." ".$user['l_name']?></h3>
             <?php if($user['user_type'] == "Administrator")
                     {
@@ -37,6 +39,7 @@ if (isset($_SESSION["user_id"])) {
                         echo "<h3><a href='logout.php'><img src='img/log-out-outline.svg'></a></h3>";
                     }
             ?>
+            </div>
         </nav>
 
     <?php else: ?>

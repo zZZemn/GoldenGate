@@ -2,4 +2,46 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: poppins;
 }
+
+nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #D4AF37;
+}
+
+nav img {
+    height: 25px;
+}
+
+.logo {
+    height: 70px;
+}
+
+.store-name {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #FF0000;
+}
+
+nav h5 {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.name h3 {
+    margin: 0px 10px;
+}
+
+/*Top nav end*/
+
