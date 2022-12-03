@@ -163,10 +163,10 @@ if (isset($_SESSION["user_id"])) {
     <?php endif; ?>
     
     <script>
-    if ( window.history.replaceState ) 
-        {
-            window.history.replaceState( null, null, window.location.href );
-        }
+        if ( window.history.replaceState ) 
+            {
+                window.history.replaceState( null, null, window.location.href );
+            }
     </script>
 </body>
 </html>
