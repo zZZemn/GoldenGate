@@ -42,6 +42,82 @@ if (isset($_SESSION["user_id"])) {
             </div>
         </nav>
 
+        <div class="pos-container">
+            <div class="main-pos">
+                    <form action="" method="post">
+                        <table class="search-table">
+                            <tr>
+                                <td class="img"><a href="#"><img src="img/person-add.svg" alt="Add"></a></td>
+                                <td>
+                                    <input type="text" name="customer_id" list="customers_ID" placeholder="Enter Customer ID">
+                                    <?php 
+                                        $customer_ID = "SELECT * FROM customer";
+                                        $customer_result = $connect->query($customer_ID);
+
+                                        if($customer_result->num_rows > 0)
+                                        {
+                                            echo "<datalist id='customers_ID'>";
+
+                                            while($row = $customer_result->fetch_assoc())
+                                            {
+                                                echo "<option value=".$row['cust_id'].">".$row['cust_name']."</option>";
+                                            }
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <input type="text" name="pro_code" list="pro_code" placeholder="Enter Product Code / Name">
+                                    <?php 
+                                        $product_code = "SELECT * FROM products";
+                                        $code_result = $connect->query($product_code);
+
+                                        if($code_result->num_rows > 0)
+                                        {
+                                            echo "<datalist id='pro_code'>";
+
+                                            while($row = $code_result->fetch_assoc())
+                                            {
+                                                echo "<option value=".$row['pro_code'].">".$row['pro_name']." - ".$row['quantity']."pc/s"."</option>";
+                                            }
+                                        }
+                                    ?>
+                                </td>
+                                <td class="qty">
+                                    <input type="number" name="qty" placeholder="qty">
+                                </td>
+                                <td class="btn">
+                                    <input type="submit" name="add" value="Add">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+
+                    <form action="" method="post">
+                        <table class="receipt-table" border="1">
+                            <tr>
+                                <th>Product</th>
+                                <th>Measurement</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Amount</th>
+                                <th colspan="2">Action</th>
+                            </tr>
+
+                            <tr class="product-adding">
+                                <td class="product_td"><input readonly type="text"></td>
+                                <td class="meas_td"><input readonly type="text"></td>
+                                <td class="price_td"><input readonly type="text"></td>
+                                <td class="qty_td"><input readonly type="text"></td>
+                                <td class="amount_td"><input readonly type="text"></td>
+                                <td class="action-btn"><a readonly href="#"><img src="img/create.svg" alt=""></a></td>
+                                <td class="action-btn"><a readonly href="#"></a><img src="img/trash.svg" alt=""></td>
+                            </tr> 
+                        </table>
+                    </form>
+
+            </div>
+        </div>
+
     <?php else: ?>
         <div class="no-account-selected">
             <h1>No account selected</h1>
