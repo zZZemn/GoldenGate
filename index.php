@@ -25,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 {
                     header("Location: goldengate.php");
                 }
-            else if($user["user_type"] == "Pharmacist")
+            else if($user["user_type"] === "Pharmacist")
                 {
-                    header("pos.php");
+                    header("Location: pos.php");
                 }
             exit;
         }
