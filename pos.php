@@ -171,11 +171,6 @@ if (isset($_SESSION["user_id"])) {
                     if ($payment >= $compTOT)
                         {
                             $change = $payment - $compTOT;
-
-                            $process_sales = "INSERT INTO `process_sales`(`process_id`, `sub_total`, `vat`, `discount`, `total`, `payment`, `cust_change`) 
-                            VALUES ('$processID','$compSUBTOT','$compVAT','$cust_disc','$compTOT','$payment', $CMPchange)";
-
-                            $connect->query($process_sales);
                         }
                     else
                         {
@@ -229,6 +224,12 @@ if (isset($_SESSION["user_id"])) {
                         }
                 }
 
+            if ($payment != 0 && $total != 0)
+            {
+                $process_sales = "INSERT INTO `process_sales`(`process_id`, `sub_total`, `vat`, `discount`, `total`, `payment`, `cust_change`) 
+                VALUES ('$processID','$compSUBTOT','$compVAT','$cust_disc','$compTOT','$payment', $change)";
+
+                 $connect->query($process_sales);
             //---------------------------------------------------------------------------
 
             $cust_id = $_POST['cust'];
@@ -263,6 +264,16 @@ if (isset($_SESSION["user_id"])) {
 
                 }
             }
+            $vat = 0;
+            $cust_disc = 0;
+            $subtotal = 0;
+            $payment = 0;
+            $finalTot = 0;
+            $change = 0;
+
+            $posDeleteAll = "DELETE from current_pos_operation";
+            $connect->query($posDeleteAll);
+        }
                     
         }
 ?>
