@@ -42,30 +42,85 @@ if (isset($_SESSION["user_id"])) {
 
 //------------------------------------
     if (isset($_POST['add'])) {
-        $pro_code = $_POST['pro_code'];
-        $quantity = $_POST['qty'];
+            $pro_code = $_POST['pro_code'];
+            $quantity = $_POST['qty'];
 
-        $tblproduct = "SELECT * FROM products where pro_code = $pro_code";
-        $tblproductres = $connect->query($tblproduct);
-        $product = $tblproductres->fetch_assoc();
+            $tblproduct = "SELECT * FROM products where pro_code = $pro_code";
+            $tblproductres = $connect->query($tblproduct);
+            $product = $tblproductres->fetch_assoc();
 
-        $product_name = $product['pro_name'];
-        $product_meas = $product['measurement'];
-        $product_price = $product['price'];
+            $product_name = $product['pro_name'];
+            $product_meas = $product['measurement'];
+            $product_price = $product['price'];
 
-        $amount = $product_price * $quantity;
+            $amount = $product_price * $quantity;
 
-        $tblPOS = "INSERT INTO current_pos_operation(`pro_name`, `measurement`, `pro_price`, `qty`, `amount`) 
-            VALUES ('$product_name','$product_meas','$product_price','$quantity',' $amount')";
+            $tblPOS = "INSERT INTO current_pos_operation(`pro_name`, `measurement`, `pro_price`, `qty`, `amount`) 
+                VALUES ('$product_name','$product_meas','$product_price','$quantity',' $amount')";
 
-        $connect->query($tblPOS);
+            $connect->query($tblPOS);
 
-        //subtotal computation
-        $subtotal += $amount;
-        $vat = $subtotal * $tax;
-        $total = $subtotal + $vat;
-        $finalTot = $total - $cust_disc;
-}
+            //subtotal computation
+            $subtotal += $amount;
+            $vat = $subtotal * $tax;
+            $total = $subtotal + $vat;
+            $finalTot = $total - $cust_disc;
+        }
+
+
+    $change = 0;
+    $payment = 0;
+    if (isset($_POST['compute']))
+        {
+            $compVAT = $_POST['vat'];
+            $compSUBTOT = $_POST['subtotal'];
+            $compTOT = $_POST['total'];
+
+            $payment = $_POST['payment'];
+            $cust_id = $_POST['cust'];
+
+            $tblCustomer = "SELECT * FROM customer where cust_id = $cust_id";
+            $tblCustomerres = $connect->query($tblCustomer);
+            $customer = $tblCustomerres->fetch_assoc();
+
+            if($customer)
+                {
+                    $cust_age = $customer['age'];
+                    if ($cust_age >= 60) {
+                        $cust_disc = $finalTot * $discount;
+                        $finalTot -= $cust_disc;
+                    } else {
+                        $cust_disc = 0;
+                    }
+
+                    if($payment >= $compTOT)
+                    {
+
+                        $change = $payment - $finalTot;
+                    }
+                    else
+                    {
+                        echo "<script type='text/javascript'>
+                            window.onload = function () { alert('Payment should be greater than or equal to ".$compTOT."'); }
+                                    </script>";
+                    }
+                }
+
+            else
+                {
+                    if ($payment >= $compTOT)
+                        {
+                            $change = $payment - $compTOT;
+                        }
+                    else
+                        {
+                            echo "<script type='text/javascript'>
+                            window.onload = function () { alert('Payment should be greater than or equal to ".$compTOT."'); }
+                                    </script>";
+                        }
+                }
+
+        }
         
 
 
@@ -177,7 +232,23 @@ if (isset($_SESSION["user_id"])) {
                             <tr>
                                 <td><input type="text" name="vat" placeholder="VAT" readonly value="<?php echo $vat; ?>"></td>
                                 <td><input type="text" name="total" placeholder="Total" readonly value="<?php echo $finalTot ?>"></td>
-                                <td class="change-td"><input type="text" name="change" placeholder="Change" readonly></td>
+                                <td class="change-td"><input type="text" name="change" placeholder="Change" readonly value="<?php echo $change ?>"></td>
+                                <td class="cust-id" colspan="2"><input type="text" name="cust" placeholder="Custumer ID" list="customers_ID">
+                                    <?php 
+                                        $customer_ID = "SELECT * FROM customer";
+                                        $customer_result = $connect->query($customer_ID);
+
+                                        if($customer_result->num_rows > 0)
+                                        {
+                                            echo "<datalist id='customers_ID'>";
+
+                                            while($row = $customer_result->fetch_assoc())
+                                            {
+                                                echo "<option value=".$row['cust_id'].">".$row['cust_name']."</option>";
+                                            }
+                                        }
+                                    ?>
+                                </td>
                             </tr>
                             
                             <tr>
@@ -190,7 +261,7 @@ if (isset($_SESSION["user_id"])) {
                             <tr>
                                 <td><input type="text" name="discount" placeholder="Discount" readonly value="<?php echo $cust_disc ?>"></td>
                                 <td><input type="text" name="subtotal" placeholder="Subtotal" readonly value="<?php echo $subtotal ?>"></td>
-                                <td class="payment-td"><input type="number" name="payment" placeholder="Payment"></td>
+                                <td class="payment-td"><input type="number" step="any" name="payment" placeholder="Payment" value="<?php echo $payment ?>"></td>
                                 <td class="right"><input class="btn2 settle" type="submit" name="settle" value="Settle"></td>
                                 <td class="left"><a href="#" class="cancel">Cancel</a></td>
                             </tr>

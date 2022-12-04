@@ -269,6 +269,15 @@ nav h5 {
     font-size: 15px;
 }
 
+.cust-id {
+    text-align: center !important;
+}
+
+.cust-id input {
+    width: 163px;
+    text-align: center;
+}
+
 .payment-td input::-webkit-inner-spin-button,
 .payment-td input::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -277,10 +286,6 @@ nav h5 {
   margin: 0;
 }
 
-.left {
-    width: 80px !important;
-}
-
 .right {
-    width: 80px !important;
+    text-align: right;
 }
