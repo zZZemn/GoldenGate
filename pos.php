@@ -55,8 +55,8 @@ if (isset($_SESSION["user_id"])) {
 
             $amount = $product_price * $quantity;
 
-            $tblPOS = "INSERT INTO current_pos_operation(`pro_name`, `measurement`, `pro_price`, `qty`, `amount`) 
-                VALUES ('$product_name','$product_meas','$product_price','$quantity',' $amount')";
+            $tblPOS = "INSERT INTO current_pos_operation(`pro_name`, `measurement`, `pro_price`, `qty`, `amount`, `pro_code`) 
+                VALUES ('$product_name','$product_meas','$product_price','$quantity',' $amount', $pro_code)";
 
             $connect->query($tblPOS);
 
@@ -150,6 +150,121 @@ if (isset($_SESSION["user_id"])) {
             $posDeleteAll = "DELETE from current_pos_operation";
             $connect->query($posDeleteAll);
         }
+    
+    if(isset($_POST['settle']))
+        {
+            $processID = rand(10000, 99999);
+
+            $compVAT = $_POST['vat'];
+            $compSUBTOT = $_POST['subtotal'];
+            $compTOT = $_POST['total'];
+
+            $payment = $_POST['payment'];
+            $cust_id = $_POST['cust'];
+
+            $cust_disc = $_POST['discount'];
+            $subtotal = $_POST['subtotal'];
+            $CMPchange = $_POST['change'];
+
+            if(empty($cust_id))
+                {
+                    if ($payment >= $compTOT)
+                        {
+                            $change = $payment - $compTOT;
+
+                            $process_sales = "INSERT INTO `process_sales`(`process_id`, `sub_total`, `vat`, `discount`, `total`, `payment`, `cust_change`) 
+                            VALUES ('$processID','$compSUBTOT','$compVAT','$cust_disc','$compTOT','$payment', $CMPchange)";
+
+                            $connect->query($process_sales);
+                        }
+                    else
+                        {
+                            echo "<script type='text/javascript'>
+                            window.onload = function () { alert('Payment should be greater than or equal to ".$compTOT."'); }
+                                    </script>";
+                        }
+                }
+            
+            else
+                {
+                    $tblCustomer = "SELECT * FROM customer where cust_id = $cust_id";
+                    $tblCustomerres = $connect->query($tblCustomer);
+                    $customer = $tblCustomerres->fetch_assoc();
+            
+                    if(!$customer)
+                        {
+                            if ($payment >= $compTOT)
+                                {
+                                    $change = $payment - $compTOT;
+                                }
+                            else
+                                {
+                                    echo "<script type='text/javascript'>
+                                    window.onload = function () { alert('Payment should be greater than or equal to ".$compTOT."'); }
+                                            </script>";
+                                }
+                        }
+
+                    else
+                        {
+                            $cust_age = $customer['age'];
+                            if ($cust_age >= 60) {
+                                $cust_disc = $finalTot * $discount;
+                                $finalTot -= $cust_disc;
+                            } else {
+                                $cust_disc = 0;
+                            }
+
+                            if($payment >= $compTOT)
+                            {
+
+                                $change = $payment - $finalTot;
+                            }
+                            else
+                            {
+                                echo "<script type='text/javascript'>
+                                    window.onload = function () { alert('Payment should be greater than or equal to ".$compTOT."'); }
+                                            </script>";
+                            }
+                        }
+                }
+
+            //---------------------------------------------------------------------------
+
+            $cust_id = $_POST['cust'];
+
+            $settlePOSquery = "SELECT * FROM current_pos_operation";
+            $settlePOSres = $connect->query($settlePOSquery);
+
+            if($settlePOSres->num_rows > 0)
+            {
+                while($row_pos = $settlePOSres->fetch_assoc())
+                {
+                    $pro_code = $row_pos['pro_code'];
+                    $quantity = $row_pos['qty'];
+                    $amount = $row_pos['amount'];
+
+                    //qty minus
+                    $productquan = "SELECT *  from products WHERE pro_code = $pro_code";
+                    $tblproductRes = $connect->query($productquan);
+                    $prod = $tblproductRes->fetch_assoc();
+
+                    $prodQty = $prod['quantity'];
+                    $updatedqty = $prodQty - $quantity;
+
+                    $productQtyUpdate = "UPDATE products SET quantity ='$updatedqty' WHERE pro_code = $pro_code";
+                    $connect->query($productQtyUpdate);
+
+                    //insert to sales
+                    $insertTosales = "INSERT INTO sales (`process_id`, `pro_code`, `cust_id`, `quantity`, `amount`) 
+                    VALUES ('$processID','$pro_code','$cust_id','$quantity','$amount')";
+
+                    $connect->query($insertTosales);
+
+                }
+            }
+                    
+        }
 ?>
 
 <!DOCTYPE html>
@@ -167,7 +282,7 @@ if (isset($_SESSION["user_id"])) {
             <h5><?php echo $time?> - <?php echo $date; ?></h5>
             
             <div class="name">
-            <h3><?php echo $user['f_name']." ".$user['l_name']?></h3>
+            <h3 class="user"><?php echo $user['f_name']." ".$user['l_name']?></h3>
             <?php if($user['user_type'] == "Administrator")
                     {
                         echo "<hr>";
@@ -175,7 +290,7 @@ if (isset($_SESSION["user_id"])) {
                     } 
                     else
                     {
-                        echo "<h3><a href='logout.php'><img src='img/log-out-outline.svg'></a></h3>";
+                        echo "<h3><a class='hide' href='logout.php'><img src='img/log-out-outline.svg'></a></h3>";
                     }
             ?>
             </div>
@@ -184,7 +299,7 @@ if (isset($_SESSION["user_id"])) {
         <div class="pos-container">
             <div class="main-pos">
                     <form action="" method="post">
-                        <table class="search-table">
+                        <table class="search-table hide">
                             <tr>
                                 <td class="search-td"> 
                                     <input type="text" name="pro_code" list="pro_code" placeholder="Enter Product Code / Name" required>
@@ -198,7 +313,11 @@ if (isset($_SESSION["user_id"])) {
 
                                             while($row = $code_result->fetch_assoc())
                                             {
+                                                $pro_quan = $row['quantity'];
+                                                if($pro_quan > 0)
+                                                {
                                                 echo "<option value=".$row['pro_code'].">".$row['pro_name']." - ".$row['quantity']."pc/s"."</option>";
+                                                }
                                             }
                                         }
                                     ?>
@@ -222,7 +341,7 @@ if (isset($_SESSION["user_id"])) {
                                     <th>Price</th>
                                     <th>Qty</th>
                                     <th>Amount</th>
-                                    <th colspan="2">Action</th>
+                                    <th class="hide" colspan="2">Action</th>
                                 </tr>
 
                             <?php
@@ -282,18 +401,17 @@ if (isset($_SESSION["user_id"])) {
                                 <th>SUBTOTAL</th>
                                 <th>PAYMENT</th>
                                 <td class="right"><input class="btn2  compute" type="submit" name="compute" value="Compute"></td>
-                                <td class="left"><button class="btn2 print">Print</button></td>
+                                <td class="left"><input class="btn2  print" type="submit" name="print" value="Print" onclick="window.print()"></td>
                             </tr>
                             <tr>
                                 <td><input type="text" name="discount" placeholder="Discount" readonly value="<?php echo $cust_disc ?>"></td>
                                 <td><input type="text" name="subtotal" placeholder="Subtotal" readonly value="<?php echo $subtotal ?>"></td>
-                                <td class="payment-td"><input type="number" step="any" name="payment" placeholder="Payment" value="<?php echo $payment ?>"></td>
+                                <td class="payment-td"><input type="number" step="any" name="payment" placeholder="Payment" value="<?php echo $payment ?>" required></td>
                                 <td class="right"><input class="btn2 settle" type="submit" name="settle" value="Settle"></td>
                                 <td class="left"><input class="btn2 cancel" type="submit" name="cancel" value="Cancel"></td>
                             </tr>
                         </table>
                     </form>
-
             </div>
         </div>
 
