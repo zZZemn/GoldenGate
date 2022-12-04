@@ -1,6 +1,7 @@
 <?php 
 include("time&date.php");
 session_start();
+$invalid = false;
 
 if (isset($_SESSION["user_id"])) {
     include("database.php");
@@ -16,9 +17,12 @@ if (isset($_SESSION["user_id"])) {
     $vat_disc = $vat_disc_result->fetch_assoc();
 
     $vat = $vat_disc['vat'];
+    $discount = $vat_disc['discount'];
+
+    $cust_disc = 0;
+    $subtotal = 0;
 
     if (isset($_POST['add'])) {
-        $cust_id = $_POST['customer_id'];
         $pro_code = $_POST['pro_code'];
         $quantity = $_POST['qty'];
 
@@ -32,11 +36,26 @@ if (isset($_SESSION["user_id"])) {
 
         $amount = $product_price * $quantity;
 
-        $tblPOS = "INSERT INTO current_pos_operation(`pro_name`, `measurement`, `pro_price`, `qty`, `amount`, `cust_id`) 
-            VALUES ('$product_name','$product_meas','$product_price','$quantity',' $amount','$cust_id')";
+        $tblPOS = "INSERT INTO current_pos_operation(`pro_name`, `measurement`, `pro_price`, `qty`, `amount`) 
+            VALUES ('$product_name','$product_meas','$product_price','$quantity',' $amount')";
 
         $connect->query($tblPOS);
-    }
+
+        
+}
+        
+
+        //subtotal computation
+        $tblPOSquery = "SELECT * FROM current_pos_operation";
+        $tblPOSres = $connect->query($tblPOSquery);
+        if($tblPOSres->num_rows > 0)
+        {
+            while($row_pos = $tblPOSres->fetch_assoc())
+            {
+                $row_amount = $row_pos['amount'];
+                $subtotal += $row_amount;
+            }
+        }
 
 ?>
 
@@ -74,26 +93,8 @@ if (isset($_SESSION["user_id"])) {
                     <form action="" method="post">
                         <table class="search-table">
                             <tr>
-                                <td class="img"><a href="#"><img src="img/person-add.svg" alt="Add"></a></td>
-                                <td>
-                                    <input type="text" name="customer_id" list="customers_ID" placeholder="Enter Customer ID">
-                                    <?php 
-                                        $customer_ID = "SELECT * FROM customer";
-                                        $customer_result = $connect->query($customer_ID);
-
-                                        if($customer_result->num_rows > 0)
-                                        {
-                                            echo "<datalist id='customers_ID'>";
-
-                                            while($row = $customer_result->fetch_assoc())
-                                            {
-                                                echo "<option value=".$row['cust_id'].">".$row['cust_name']."</option>";
-                                            }
-                                        }
-                                    ?>
-                                </td>
-                                <td>
-                                    <input type="text" name="pro_code" list="pro_code" placeholder="Enter Product Code / Name">
+                                <td class="search-td"> 
+                                    <input type="text" name="pro_code" list="pro_code" placeholder="Enter Product Code / Name" required>
                                     <?php 
                                         $product_code = "SELECT * FROM products";
                                         $code_result = $connect->query($product_code);
@@ -110,7 +111,7 @@ if (isset($_SESSION["user_id"])) {
                                     ?>
                                 </td>
                                 <td class="qty">
-                                    <input type="number" name="qty" placeholder="qty">
+                                    <input type="number" name="qty" placeholder="qty" required>
                                 </td>
                                 <td class="btn">
                                     <input type="submit" name="add" value="Add">
@@ -164,19 +165,19 @@ if (isset($_SESSION["user_id"])) {
                                 <td><input type="text" name="vat" placeholder="VAT" readonly value="<?php echo $vat; ?>"></td>
                                 <td><input type="text" name="total" placeholder="Total" readonly></td>
                                 <td class="change-td"><input type="text" name="change" placeholder="Change" readonly></td>
-                                <td><button class="btn print">Print</button></td>
+                                <td><button class="btn2 print">Print</button></td>
                             </tr>
                             
                             <tr>
                                 <th>DISCOUNT</th>
                                 <th>SUBTOTAL</th>
                                 <th>PAYMENT</th>
-                                <td><input class="btn settle" type="submit" name="settle" value="Settle"></td>
+                                <td><input class="btn2 settle" type="submit" name="settle" value="Settle"></td>
                                 
                             </tr>
                             <tr>
-                                <td><input type="text" name="discount" placeholder="Discount" readonly></td>
-                                <td><input type="text" name="subtotal" placeholder="Subtotal" readonly></td>
+                                <td><input type="text" name="discount" placeholder="Discount" readonly value="<?php echo $cust_disc ?>"></td>
+                                <td><input type="text" name="subtotal" placeholder="Subtotal" readonly value="<?php echo $subtotal ?>"></td>
                                 <td class="payment-td"><input type="number" name="payment" placeholder="Payment"></td>
                                 <td><a href="#" class="cancel">Cancel</a></td>
                             </tr>
