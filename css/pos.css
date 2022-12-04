@@ -237,9 +237,18 @@ nav h5 {
     font-size: 13px !important;
 }
 
+.compute {
+    border: 1px solid #000000 !important;
+    background-color: #035A01;
+    color: white !important;
+    font-weight: 600;
+    font-size: 13px !important;
+}
+
 .cancel {
     background-color: red;
-    padding: 5.5px 16px;
+    padding: 6px 16px;
+    padding-bottom: 3px !important;
     text-align: center;
     border: 1px solid black;
     font-weight: 600 !important;
@@ -266,4 +275,12 @@ nav h5 {
   -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+
+.left {
+    width: 80px !important;
+}
+
+.right {
+    width: 80px !important;
 }
