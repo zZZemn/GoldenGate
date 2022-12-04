@@ -289,3 +289,10 @@ nav h5 {
 .right {
     text-align: right;
 }
+
+.cancel {
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 0 !important;
+}

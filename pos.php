@@ -79,34 +79,7 @@ if (isset($_SESSION["user_id"])) {
             $payment = $_POST['payment'];
             $cust_id = $_POST['cust'];
 
-            $tblCustomer = "SELECT * FROM customer where cust_id = $cust_id";
-            $tblCustomerres = $connect->query($tblCustomer);
-            $customer = $tblCustomerres->fetch_assoc();
-
-            if($customer)
-                {
-                    $cust_age = $customer['age'];
-                    if ($cust_age >= 60) {
-                        $cust_disc = $finalTot * $discount;
-                        $finalTot -= $cust_disc;
-                    } else {
-                        $cust_disc = 0;
-                    }
-
-                    if($payment >= $compTOT)
-                    {
-
-                        $change = $payment - $finalTot;
-                    }
-                    else
-                    {
-                        echo "<script type='text/javascript'>
-                            window.onload = function () { alert('Payment should be greater than or equal to ".$compTOT."'); }
-                                    </script>";
-                    }
-                }
-
-            else
+            if(empty($cust_id))
                 {
                     if ($payment >= $compTOT)
                         {
@@ -119,11 +92,64 @@ if (isset($_SESSION["user_id"])) {
                                     </script>";
                         }
                 }
+            
+            else
+                {
+                    $tblCustomer = "SELECT * FROM customer where cust_id = $cust_id";
+                    $tblCustomerres = $connect->query($tblCustomer);
+                    $customer = $tblCustomerres->fetch_assoc();
+            
+                    if(!$customer)
+                        {
+                            if ($payment >= $compTOT)
+                                {
+                                    $change = $payment - $compTOT;
+                                }
+                            else
+                                {
+                                    echo "<script type='text/javascript'>
+                                    window.onload = function () { alert('Payment should be greater than or equal to ".$compTOT."'); }
+                                            </script>";
+                                }
+                        }
 
+                    else
+                        {
+                            $cust_age = $customer['age'];
+                            if ($cust_age >= 60) {
+                                $cust_disc = $finalTot * $discount;
+                                $finalTot -= $cust_disc;
+                            } else {
+                                $cust_disc = 0;
+                            }
+
+                            if($payment >= $compTOT)
+                            {
+
+                                $change = $payment - $finalTot;
+                            }
+                            else
+                            {
+                                echo "<script type='text/javascript'>
+                                    window.onload = function () { alert('Payment should be greater than or equal to ".$compTOT."'); }
+                                            </script>";
+                            }
+                        }
+                }
         }
-        
 
+    if(isset($_POST['cancel']))
+        {
+            $vat = 0;
+            $cust_disc = 0;
+            $subtotal = 0;
+            $payment = 0;
+            $finalTot = 0;
+            $change = 0;
 
+            $posDeleteAll = "DELETE from current_pos_operation";
+            $connect->query($posDeleteAll);
+        }
 ?>
 
 <!DOCTYPE html>
@@ -263,7 +289,7 @@ if (isset($_SESSION["user_id"])) {
                                 <td><input type="text" name="subtotal" placeholder="Subtotal" readonly value="<?php echo $subtotal ?>"></td>
                                 <td class="payment-td"><input type="number" step="any" name="payment" placeholder="Payment" value="<?php echo $payment ?>"></td>
                                 <td class="right"><input class="btn2 settle" type="submit" name="settle" value="Settle"></td>
-                                <td class="left"><a href="#" class="cancel">Cancel</a></td>
+                                <td class="left"><input class="btn2 cancel" type="submit" name="cancel" value="Cancel"></td>
                             </tr>
                         </table>
                     </form>
