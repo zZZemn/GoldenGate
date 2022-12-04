@@ -11,7 +11,13 @@ if (isset($_SESSION["user_id"])) {
     $user = $result->fetch_assoc();
     }
 
-    if(isset($_POST['add'])) {
+    $vat_disc_Query = "SELECT * FROM payment_vat_discount";
+    $vat_disc_result = $connect->query($vat_disc_Query);
+    $vat_disc = $vat_disc_result->fetch_assoc();
+
+    $vat = $vat_disc['vat'];
+
+    if (isset($_POST['add'])) {
         $cust_id = $_POST['customer_id'];
         $pro_code = $_POST['pro_code'];
         $quantity = $_POST['qty'];
@@ -27,10 +33,9 @@ if (isset($_SESSION["user_id"])) {
         $amount = $product_price * $quantity;
 
         $tblPOS = "INSERT INTO current_pos_operation(`pro_name`, `measurement`, `pro_price`, `qty`, `amount`, `cust_id`) 
-        VALUES ('$product_name','$product_meas','$product_price','$quantity',' $amount','$cust_id')";
+            VALUES ('$product_name','$product_meas','$product_price','$quantity',' $amount','$cust_id')";
 
         $connect->query($tblPOS);
-
     }
 
 ?>
@@ -136,7 +141,7 @@ if (isset($_SESSION["user_id"])) {
                                                 {
                                                 echo "
                                                     <tr class='product-adding'>
-                                                    <td class='product_td'><input readonly type='text' name='pro_name' value=" . $posrow['pro_name'] . "></td>
+                                                    <td class='product_td'><input readonly type='text' name='pro_name' value=" . $posrow['pro_name']."></td>
                                                     <td class='meas_td'><input readonly type='text' name='measurement' value=" . $posrow['measurement'] . "></td>
                                                     <td class='price_td'><input readonly type='text' name='price' value=" . $posrow['pro_price'] . "></td>
                                                     <td class='qty_td'><input type='number' name='quantity' value=" . $posrow['qty'] . "></td>
@@ -156,24 +161,24 @@ if (isset($_SESSION["user_id"])) {
                                 <th>CHANGE</th>
                             </tr>
                             <tr>
-                                <td><input type="text" name="vat" placeholder="VAT" readonly></td>
+                                <td><input type="text" name="vat" placeholder="VAT" readonly value="<?php echo $vat; ?>"></td>
                                 <td><input type="text" name="total" placeholder="Total" readonly></td>
-                                <td><input type="text" name="change" placeholder="Change" readonly></td>
-                                <td><button class="btn">Print</button></td>
+                                <td class="change-td"><input type="text" name="change" placeholder="Change" readonly></td>
+                                <td><button class="btn print">Print</button></td>
                             </tr>
                             
                             <tr>
                                 <th>DISCOUNT</th>
                                 <th>SUBTOTAL</th>
                                 <th>PAYMENT</th>
-                                <td><input class="btn" type="submit" name="settle" value="Settle"></td>
+                                <td><input class="btn settle" type="submit" name="settle" value="Settle"></td>
                                 
                             </tr>
                             <tr>
                                 <td><input type="text" name="discount" placeholder="Discount" readonly></td>
                                 <td><input type="text" name="subtotal" placeholder="Subtotal" readonly></td>
-                                <td><input type="text" name="payment" placeholder="Payment"></td>
-                                <td><input class="btn" type="submit" name="settle" value="Cancel"></td>
+                                <td class="payment-td"><input type="number" name="payment" placeholder="Payment"></td>
+                                <td><a href="#" class="cancel">Cancel</a></td>
                             </tr>
                         </table>
                     </form>
@@ -187,6 +192,7 @@ if (isset($_SESSION["user_id"])) {
             <p class="Login"><a href="index.php">Login</a>
         </div>
     <?php endif; ?>
+
     
     <script>
         if ( window.history.replaceState ) 

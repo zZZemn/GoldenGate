@@ -213,3 +213,50 @@ nav h5 {
     font-size: 15px;
     cursor: pointer;
 }
+
+.print {
+    border: 1px solid #000000 !important;
+    background-color: #035A01;
+    color: white !important;
+    font-weight: 600;
+    font-size: 13px !important;
+}
+
+.settle {
+    border: 1px solid #000000 !important;
+    background-color: #035A01;
+    color: white !important;
+    font-weight: 600;
+    font-size: 13px !important;
+}
+
+.cancel {
+    background-color: red;
+    padding: 5.5px 16px;
+    text-align: center;
+    border: 1px solid black;
+    font-weight: 600 !important;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+}
+
+.change-td input{
+    background-color: black;
+    color: #035A01;
+    font-size: 15px;
+}
+
+.payment-td input {
+    background-color: black;
+    color: red;
+    font-size: 15px;
+}
+
+.payment-td input::-webkit-inner-spin-button,
+.payment-td input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
