@@ -64,7 +64,7 @@ if ($inventoryRes = mysqli_query($connect, $inventory)) {
                 </tr>
                 <tr>
                     <td><img src="img/build-outline.svg" alt=""></td>
-                    <td><a class="maintenance" href="#">MAINTENANCE</a></td>
+                    <td><a class="maintenance" href="maintenance.php">MAINTENANCE</a></td>
                 </tr>
                 <tr class="others-td">
                     <td><img src="img/apps-outline.svg" alt=""></td>

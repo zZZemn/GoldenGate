@@ -9,9 +9,18 @@ if (isset($_SESSION["user_id"])) {
             WHERE user_no = {$_SESSION["user_id"]}";
     $result = $connect->query($sql);
     $user = $result->fetch_assoc();
+}
 
-    $inventory = "SELECT * FROM inventory ORDER by ex_date";
-    $inventory_result = $connect->query($inventory);
+$row = 0;
+$pro_sales = "SELECT * from process_sales";
+if ($result = mysqli_query($connect, $pro_sales)) {
+    $row = mysqli_num_rows( $result );
+ }
+
+$inv = 0;
+$inventory = "SELECT * FROM products WHERE quantity < 20";
+if ($inventoryRes = mysqli_query($connect, $inventory)) {
+    $inv = mysqli_num_rows($inventoryRes);
 }
 
 ?>
@@ -19,18 +28,22 @@ if (isset($_SESSION["user_id"])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inventory</title>
+    <title>Maintenance</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/inventory.css">
+    <link rel="stylesheet" href="css/maintenance.css">
 </head>
 <body>
     <?php if (isset($user)): ?>
         <nav class="top-nav">
             <a href="goldengate.php"><img src="img/ggd-logo.png" alt="GGD"></a>
-            <h1>INVENTORY</h1>
-            <h5><?php echo $time ?></h5>
+            <h1>GOLDEN GATE DRUGSTORE</h1>
+            <h5><?php echo "".$time ?></h5>
+            <div btn-log>
+            <a class="logout" href="pos.php"><img src="img/calculator.svg" alt=""></a>
+            <a class="logout" href="logout.php"><img src="img/log-out-outline.svg" alt=""></a>
+            </div>
         </nav>
-    
+
         <nav class="side-nav">
             <table class="nav-links">
                 <tr class="user-profile">
@@ -59,7 +72,7 @@ if (isset($_SESSION["user_id"])) {
                 </tr>
             </table>
 
-            <div class="date"><?php echo "<h4>$date</h4>"; ?></div>
+            <div class="date"><?php echo "<h4>".$date."</h4>"; ?></div>
 
             <table class="daily-sales">
                 <tr>
@@ -82,57 +95,10 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </nav>
 
-        <div class="inventory-table-container">
-            <table class="inventory-table">
-                <tr class="inventory-table-top">
-                    <td colspan="2">Action</td>
-                    <td>ID</td>
-                    <td>Product Code</td>
-                    <td>Product Name</td>
-                    <td>Capital</td>
-                    <td>Selling Price</td>
-                    <td>Quantity</td>
-                    <td>Date Delivered</td>
-                    <td>Expiration Date</td>
-                </tr>
-
-                <?php 
-                    if($inventory_result->num_rows > 0)
-                    {
-                        while($row = $inventory_result->fetch_assoc())
-                        {
-                            $product = "SELECT * FROM products
-                            WHERE pro_code = $row[pro_code]";
-                            $product_result = $connect->query($product);
-                            $product_table = $product_result->fetch_assoc();
-                            
-                            echo "<tr>
-                                        <td class='action-buttons'><a href='delete-inventory-row.php?invent_no=".$row['invent_no']."'><img src='img/trash-outline.svg' alt=''></a></td>
-                                        <td class='action-buttons'><a href='edit-inventory-row.php?invent_no=".$row['invent_no']."'><img src='img/create-outline.svg' alt=''></a></td>
-                                        <td>".$row['invent_no']."</td>
-                                        <td>".$row['pro_code']."</td>
-                                        <td>".$product_table['pro_name']."</td>
-                                        <td>".$row['del_price']."</td>
-                                        <td>".$product_table['price']."</td>
-                                        <td>".$row['del_qty']."</td>
-                                        <td>".$row['del_date']."</td>
-                                        <td>".$row['ex_date']."</td>
-                                    </tr>";
-                        }
-                    }
-                ?>
-            </table>
-        </div>
-
-        <div class="table-inventory-buttons">
-            <a href="add-inventory.php">Add Product</a>
-            <a href="products.php">View Products</a> 
-            <a href="#">Report</a> 
-        </div>
-    
+        
         
 
-    <?php else: ?>
+    <?php else: ?>  
         <div class="no-account-selected">
             <h1>No account selected</h1>
             <p class="Login"><a href="index.php">Login</a>
