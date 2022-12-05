@@ -25,7 +25,7 @@ if (isset($_SESSION["user_id"])) {
         <nav class="top-nav">
             <a href="goldengate.php"><img src="img/ggd-logo.png" alt="GGD"></a>
             <h1>GOLDEN GATE DRUGSTORE</h1>
-            <h5><?php echo $time ?></h5>
+            <h5><?php echo "".$time ?></h5>
             <a href="logout.php">Logout</a>
         </nav>
 
@@ -57,7 +57,7 @@ if (isset($_SESSION["user_id"])) {
                 </tr>
             </table>
 
-            <div class="date"><?php echo "<h4>$date</h4>"; ?></div>
+            <div class="date"><?php echo "<h4>".$date."</h4>"; ?></div>
 
             <table class="daily-sales">
                 <tr>
@@ -80,7 +80,11 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </nav>
 
-        <a href="logout.php">Logout</a>
+        <div class="main-page-container">
+            <div class="#">
+                
+            </div>
+        </div>
 
     <?php else: ?>
         <div class="no-account-selected">
