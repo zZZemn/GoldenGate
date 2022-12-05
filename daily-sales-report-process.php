@@ -26,14 +26,23 @@ if (isset($_SESSION["user_id"])) {
             {
                 $sub += $row['total'];
                 $vat += $row['vat'];
+                
             }
-
-        $total = $sub - $vat;
-
-        $report = "INSERT INTO `sales-report`(`date`, `time`, `sales_subtot`, `total_vat`, `total`, `user`) 
+            
+            $total = $sub - $vat;
+            
+            $report = "INSERT INTO `sales-report`(`date`, `time`, `sales_subtot`, `total_vat`, `total`, `user`) 
         VALUES ('$date','$time','$sub','$vat','$total','$userLname')";
         $connect->query($report);
+        
+        $delSales = "DELETE FROM sales";
+        $delProcSales = "DELETE FROM process_sales";
+
+        $connect->query($delSales);
+        $connect->query($delProcSales);
         }
+
+
 
         header("location:reports.php");
 }

@@ -49,6 +49,10 @@ input {
     cursor: pointer;
 }
 
+.add {
+    text-align: center;
+}
+
 @media print {
     input {
      display: none;

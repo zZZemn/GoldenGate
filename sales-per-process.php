@@ -1,4 +1,5 @@
 <?php
+include "time&date.php";
     include "database.php";
     $id = $_GET['process_id'];
 
@@ -15,6 +16,20 @@
     <body>
     
         <table>
+            <tr>
+                <td><?php echo " ".$time?></td>
+                <td colspan="3"></td>
+                <td><?php echo " ".$date?></td>
+            </tr>
+            <tr>
+                <th colspan="5">GOLDEN GATE DRUGSTORE </th>
+            </tr>
+            <tr>
+                <td class="add" colspan="5">Estrella Homes Subdivision, Ilang Ilang, Patubig, Marilao, Bulacan.</td>
+            </tr>
+            <tr>
+                <td colspan="5"><hr></td>
+            </tr>
             <tr>
                 <th>Product Code</th>
                 <th>Product Name</th>

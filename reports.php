@@ -16,7 +16,7 @@ if (isset($_SESSION["user_id"])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Golden Gate Drugstore</title>
+    <title>Reports</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reports.css">
 </head>
@@ -24,8 +24,8 @@ if (isset($_SESSION["user_id"])) {
     <?php if (isset($user)): ?>
         <nav class="top-nav">
             <a href="goldengate.php"><img src="img/ggd-logo.png" alt="GGD"></a>
-            <h1>GOLDEN GATE DRUGSTORE</h1>
-            <h5><?php echo $time ?></h5>
+            <h1>REPORTS</h1>
+            <h5><?php echo "".$time ?></h5>
         </nav>
 
         <nav class="side-nav">
@@ -56,7 +56,7 @@ if (isset($_SESSION["user_id"])) {
                 </tr>
             </table>
 
-            <div class="date"><?php echo "<h4>$date</h4>"; ?></div>
+            <div class="date"><?php echo "<h4>".$date."</h4>"; ?></div>
 
             <table class="daily-sales">
                 <tr>
@@ -83,7 +83,7 @@ if (isset($_SESSION["user_id"])) {
             <div class="sales-report">
                 <table class="report-table" border="1">
                     <tr class="head">
-                        <th colspan="7">Sales Report</th>
+                        <th colspan="7">SALES</th>
                     </tr>
                     <tr class="bot-head">
                         <th>ID</th>
@@ -120,7 +120,7 @@ if (isset($_SESSION["user_id"])) {
             <div class="sales-report">
                 <table class="report-table" border="1">
                     <tr class="head">
-                        <th colspan="7">Sales Report</th>
+                        <th colspan="7">SALES</th>
                     </tr>
                     <tr class="bot-head">
                         <th>ID</th>

@@ -459,7 +459,12 @@ if (isset($_SESSION["user_id"])) {
                                 </tr>";
                             }
                     }
-             ?>                           
+             ?>         
+             <tr class="sales-report-btn">
+                <th colspan="8">
+                    <a href="daily-sales-report-process.php">Report</a>
+                </th>
+             </tr>                  
               </table>                              
                                         
         </div>

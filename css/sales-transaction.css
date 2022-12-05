@@ -265,3 +265,12 @@ body {
     background-color: #D4AF37;
     border-radius: 3px;
 }
+
+.empty th{
+    background-color: #ffffff !important;
+    color: red !important;
+    font-size: 50px !important;
+    padding-top: 170px !important;
+    font-weight: 200 !important;
+    border-color: #025a0100;
+}
