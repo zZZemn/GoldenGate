@@ -39,7 +39,7 @@ if (isset($_SESSION["user_id"])) {
                 </tr>
                 <tr>
                     <td><img src="img/reader-outline.svg" alt=""></td>
-                    <td><a class="sales-trans" href="#">SALES TRANSACTION</a></td>
+                    <td><a class="sales-trans" href="sales-transaction.php">SALES TRANSACTION</a></td>
                 </tr>
                 <tr>
                     <td><img src="img/layers-outline.svg" alt=""></td>
@@ -47,7 +47,7 @@ if (isset($_SESSION["user_id"])) {
                 </tr>
                 <tr>
                     <td><img src="img/stats-chart-outline.svg" alt=""></td>
-                    <td><a class="reports" href="#">REPORTS</a></td>
+                    <td><a class="reports" href="reports.php">REPORTS</a></td>
                 </tr>
                 <tr>
                     <td><img src="img/build-outline.svg" alt=""></td>

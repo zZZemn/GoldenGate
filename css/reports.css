@@ -1,0 +1,248 @@
+* {
+    margin: auto;
+    padding: auto;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/*------Top nav-------*/
+.top-nav {
+    display: flex;
+    background-color: #D4AF37;
+}
+
+.top-nav img {
+    width: 100px;
+    height: 100px;
+}
+
+.top-nav a {
+    height: 100px;
+}
+
+.top-nav h1 {
+    font-size: 35px;
+    letter-spacing: 1px;
+    color: #FF0000;
+    text-shadow: 2px 2px 2px black;
+}
+
+.top-nav h5 {
+    font-size: 15px;
+}
+
+/*-------------------nav links-----------*/
+.side-nav {
+    background-color: #D4AF37;
+    height: 85.6vh;
+    width: 250px;
+    margin: 0;
+    position: relative;
+}
+
+.nav-links {
+    border-collapse: collapse;
+    position: relative;
+}
+
+.nav-links tr  {
+    border-top: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.nav-links tr td {
+    padding: 5px;
+}
+
+.nav-links a{
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 5px;
+    padding: 10px 0px;
+}
+
+.nav-links img {
+    height: 30px;
+    width: 30px;
+}
+
+.others-td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.user-profile td {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.user-profile td a {
+    padding: 20px 0px !important;
+}
+
+.profile {
+    padding-right: 10px !important;
+}
+
+.sales-trans {
+    padding-right: 13px !important;
+}
+
+.inventory {
+    padding-right: 87.5px !important;
+}
+
+.reports {
+    padding-right: 106px !important;
+}
+
+.maintenance {
+    padding-right: 62px !important;
+}
+
+.others {
+    padding-right: 114.5px !important;
+}
+
+.nav-links a:hover {
+    color: rgba(0, 0, 0, 0.829);
+}
+
+/*----------------Bottom links----------------*/
+
+.date {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1px;
+    font-size: 17px;
+}
+
+.daily-sales {
+    width: 70%;
+    border-collapse: collapse;
+}
+
+.daily-sales img {
+    height: 20px;
+    padding-left: 10px;
+    margin-top: 3px;
+}
+
+.daily-sales tr td {
+    border: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.daily-sales .img-td {
+    border-right: none;
+}
+
+.daily-sales-text-td {
+    border-left: none !important;
+    font-size: 13px;
+    font-weight: 700;
+    color: #035A01;
+}
+
+.daily-sales-amount-td {
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 0px;
+    color: #035A01;
+}
+
+/*notice*/
+
+.notice {
+    width: 70%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.notice img {
+    height: 20px;
+    padding-left: 10px;
+    margin-top: 3px;
+}
+
+.notice tr td {
+    border: 1px solid rgba(0, 0, 0, 0.226);
+}
+
+.notice .img-td {
+    border-right: none;
+}
+
+.notice-text-td {
+    border-left: none !important;
+    font-size: 13px;
+    font-weight: 700;
+    color: red;
+}
+
+.notice-td {
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.notice-td li {
+    color: red;
+}
+
+.notice-td a {
+    color: red;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.reports-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 595px;
+    width: 1116px;
+    display: flex;
+    flex-direction: column;
+}
+
+.reports-container div {
+    height: 270px;
+    width: 1090px;
+    overflow: scroll;
+    position: relative;
+    background-color: #97979733;
+    border: 1px solid black;
+}
+
+.reports-container table {
+    position: absolute;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reports-container table tr td {
+    text-align: center;
+}
+
+.head {
+    background-color:#D4AF37;
+    color: white;
+    font-size: 20px;
+}
+
+.bot-head {
+    background-color: #035A01;
+    color: white;
+    font-size: 13px;
+}
+
+.bot-head th {
+    font-weight: 400;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.reports-container td {
+    font-size: 12px;
+}

@@ -9,6 +9,9 @@ if (isset($_SESSION["user_id"])) {
             WHERE user_no = {$_SESSION["user_id"]}";
     $result = $connect->query($sql);
     $user = $result->fetch_assoc();
+
+    $inventory = "SELECT * FROM inventory ORDER by ex_date";
+    $inventory_result = $connect->query($inventory);
 }
 
 ?>
@@ -16,19 +19,18 @@ if (isset($_SESSION["user_id"])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Golden Gate Drugstore</title>
+    <title>Sales Transaction</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/goldengate.css">
+    <link rel="stylesheet" href="css/sales-transaction.css">
 </head>
 <body>
     <?php if (isset($user)): ?>
         <nav class="top-nav">
             <a href="goldengate.php"><img src="img/ggd-logo.png" alt="GGD"></a>
-            <h1>GOLDEN GATE DRUGSTORE</h1>
+            <h1>SALES</h1>
             <h5><?php echo $time ?></h5>
-            <a href="logout.php">Logout</a>
         </nav>
-
+    
         <nav class="side-nav">
             <table class="nav-links">
                 <tr class="user-profile">
@@ -80,7 +82,45 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </nav>
 
-        <a href="logout.php">Logout</a>
+        <div class="process-sales-container">
+                                        
+              <table class="process-sales-table" border="1">
+                <tr>
+                    <th>Process&nbsp;ID</th>
+                    <th>Customer&nbsp;ID</th>
+                    <th>Subtotal</th>
+                    <th>VAT</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                    <th>Payment</th>
+                    <th>Change</th>
+                </tr>
+             <?php 
+                $pro_sales = "SELECT * FROM process_sales";
+                $pro_sales_res = $connect->query($pro_sales);
+
+                if($pro_sales_res->num_rows>0)
+                    {
+                        while($sales_row = $pro_sales_res->fetch_assoc())
+                            {
+                            echo "<tr>
+                                <td><a target='_blank' href='sales-per-process.php?process_id=".$sales_row['process_id']."'>".$sales_row['process_id']."</a></td>
+                                <td><a href='customer.php?id=".$sales_row['cust_id']."' target='_blank'>".$sales_row['cust_id']."</a></td>
+                                <td>".$sales_row['sub_total']."</td>
+                                <td>".$sales_row['vat']."</td>
+                                <td>".$sales_row['discount']."</td>
+                                <td>".$sales_row['total']."</td>
+                                <td>".$sales_row['payment']."</td>
+                                <td>".$sales_row['cust_change']."</td>
+                                </tr>";
+                            }
+                    }
+             ?>                           
+              </table>                              
+            </div>
+
+            <a class="report" href="daily-sales-report-process.php">Report</a>               
+        
 
     <?php else: ?>
         <div class="no-account-selected">
