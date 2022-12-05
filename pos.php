@@ -226,13 +226,11 @@ if (isset($_SESSION["user_id"])) {
 
             if ($payment != 0 && $total != 0)
             {
-                $process_sales = "INSERT INTO `process_sales`(`process_id`, `sub_total`, `vat`, `discount`, `total`, `payment`, `cust_change`) 
-                VALUES ('$processID','$compSUBTOT','$compVAT','$cust_disc','$compTOT','$payment', $change)";
+                $process_sales = "INSERT INTO `process_sales`(`process_id`, `sub_total`, `vat`, `discount`, `total`, `payment`, `cust_change`, `cust_id`) 
+                VALUES ('$processID','$compSUBTOT','$compVAT','$cust_disc','$compTOT','$payment', '$change', '$cust_id')";
 
                  $connect->query($process_sales);
             //---------------------------------------------------------------------------
-
-            $cust_id = $_POST['cust'];
 
             $settlePOSquery = "SELECT * FROM current_pos_operation";
             $settlePOSres = $connect->query($settlePOSquery);
@@ -257,8 +255,8 @@ if (isset($_SESSION["user_id"])) {
                     $connect->query($productQtyUpdate);
 
                     //insert to sales
-                    $insertTosales = "INSERT INTO sales (`process_id`, `pro_code`, `cust_id`, `quantity`, `amount`) 
-                    VALUES ('$processID','$pro_code','$cust_id','$quantity','$amount')";
+                    $insertTosales = "INSERT INTO sales (`process_id`, `pro_code`, `quantity`, `amount`) 
+                    VALUES ('$processID','$pro_code','$quantity','$amount')";
 
                     $connect->query($insertTosales);
 
@@ -290,7 +288,7 @@ if (isset($_SESSION["user_id"])) {
         <nav>
             <img src="img/ggd-logo-plain.png" alt="GGD" class="logo">
             <h3 class="store-name">GOLDEN GATE DRUGSTORE</h3>
-            <h5><?php echo $time?> - <?php echo $date; ?></h5>
+            <h5><?php echo $time." - ".$date; ?></h5>
             
             <div class="name">
             <h3 class="user"><?php echo $user['f_name']." ".$user['l_name']?></h3>
@@ -424,6 +422,47 @@ if (isset($_SESSION["user_id"])) {
                         </table>
                     </form>
             </div>
+        </div>
+
+        <div class="process-sales-container">
+                                        
+              <table class="process-sales-table" border="1">
+                <tr class="sales">
+                    <th colspan="8">Sales</th>
+                </tr>
+                <tr>
+                    <th>Process&nbsp;ID</th>
+                    <th>Customer&nbsp;ID</th>
+                    <th>Subtotal</th>
+                    <th>VAT</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                    <th>Payment</th>
+                    <th>Change</th>
+                </tr>
+             <?php 
+                $pro_sales = "SELECT * FROM process_sales";
+                $pro_sales_res = $connect->query($pro_sales);
+
+                if($pro_sales_res->num_rows>0)
+                    {
+                        while($sales_row = $pro_sales_res->fetch_assoc())
+                            {
+                            echo "<tr>
+                                <td><a href='#' target='_blank'>".$sales_row['process_id']."</a></td>
+                                <td><a href='#' target='_blank'>".$sales_row['cust_id']."</a></td>
+                                <td>".$sales_row['sub_total']."</td>
+                                <td>".$sales_row['vat']."</td>
+                                <td>".$sales_row['discount']."</td>
+                                <td>".$sales_row['total']."</td>
+                                <td>".$sales_row['payment']."</td>
+                                <td>".$sales_row['cust_change']."</td>
+                                </tr>";
+                            }
+                    }
+             ?>                           
+              </table>                              
+                                        
         </div>
 
     <?php else: ?>
