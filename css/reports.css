@@ -196,6 +196,8 @@
     font-weight: 500;
 }
 
+/*--------------------*/
+
 .reports-container {
     position: absolute;
     bottom: 0;
@@ -207,7 +209,7 @@
 }
 
 .reports-container div {
-    height: 270px;
+    height: 580px;
     width: 1090px;
     overflow: scroll;
     position: relative;

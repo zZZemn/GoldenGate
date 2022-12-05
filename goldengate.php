@@ -11,6 +11,18 @@ if (isset($_SESSION["user_id"])) {
     $user = $result->fetch_assoc();
 }
 
+$row = 0;
+$pro_sales = "SELECT * from process_sales";
+if ($result = mysqli_query($connect, $pro_sales)) {
+    $row = mysqli_num_rows( $result );
+ }
+
+$inv = 0;
+$inventory = "SELECT * FROM products WHERE quantity < 20";
+if ($inventoryRes = mysqli_query($connect, $inventory)) {
+    $inv = mysqli_num_rows($inventoryRes);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +38,10 @@ if (isset($_SESSION["user_id"])) {
             <a href="goldengate.php"><img src="img/ggd-logo.png" alt="GGD"></a>
             <h1>GOLDEN GATE DRUGSTORE</h1>
             <h5><?php echo "".$time ?></h5>
-            <a href="logout.php">Logout</a>
+            <div btn-log>
+            <a class="logout" href="pos.php"><img src="img/calculator.svg" alt=""></a>
+            <a class="logout" href="logout.php"><img src="img/log-out-outline.svg" alt=""></a>
+            </div>
         </nav>
 
         <nav class="side-nav">
@@ -80,13 +95,51 @@ if (isset($_SESSION["user_id"])) {
             </table>
         </nav>
 
-        <div class="main-page-container">
-            <div class="#">
-                
-            </div>
-        </div>
+        <table class="box-tables">
+            <tr class="line">
+                <th><img src="img/reader-outline.svg" alt=""></th>
+                <th class="left">SALES TRANSACTION</th>
+            </tr>
+            <tr>
+                <th class="transaction-number">
+                    <?php echo "".$row ?>
+                </th>
+                <td class="transaction">Transactions</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="right"><a href="sales-transaction.php">View</a></td>
+            </tr>
+        </table>
 
-    <?php else: ?>
+
+        <table class="box-tables2">
+            <tr class="line">
+                <th><img src="img/layers-outline.svg" alt=""></th>
+                <th class="left">INVENTORY</th>
+            </tr>
+                <?php 
+                    if ($inv > 0)
+                        {
+                        echo "<tr>
+                            <th class='transaction-number red'>
+                                <?php echo " . $inv . " ?>
+                            </th>
+                            <td class='transaction red'>Products on critical level!</td>
+                            </tr>";
+                        }
+                        else {
+                           echo "<tr class='transaction'>
+                            <td colspan='2' class='transaction blue'>All&nbsp;products&nbsp;are&nbsp;on&nbsp;good&nbsp;level</td>
+                            </tr>";
+                            }
+                        ?>
+                        <tr>
+                        <td colspan='2' class='right'><a href='products.php'>View</a></td>
+                        </tr>"
+        </table>
+        
+
+    <?php else: ?>  
         <div class="no-account-selected">
             <h1>No account selected</h1>
             <p class="Login"><a href="index.php">Login</a>

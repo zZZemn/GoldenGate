@@ -117,42 +117,7 @@ if (isset($_SESSION["user_id"])) {
                 </table>
             </div>
 
-            <div class="sales-report">
-                <table class="report-table" border="1">
-                    <tr class="head">
-                        <th colspan="7">SALES</th>
-                    </tr>
-                    <tr class="bot-head">
-                        <th>ID</th>
-                        <th>DATE</th>
-                        <th>TIME</th>
-                        <th>SALES</th>
-                        <th>TOTAL VAT</th>
-                        <th>TOTAL</th>
-                        <th>REPORTED BY</th>
-                    </tr>
-                    <?php
-                        $reports = "SELECT * FROM `sales-report`";
-                        $reportsres = $connect->query($reports);
-
-                        if($reportsres->num_rows >0)
-                            {
-                                while($row = $reportsres->fetch_assoc())
-                                    {
-                                    echo "<tr>
-                                        <td>".$row['sales_report_id']."</td>
-                                        <td>".$row['date']."</td>
-                                        <td>".$row['time']."</td>
-                                        <td>".$row['sales_subtot']."</td>
-                                        <td>".$row['total_vat']."</td>
-                                        <td>".$row['total']."</td>
-                                        <td>".$row['user']."</td>
-                                        </tr>";
-                                    }
-                            }
-                    ?>
-                </table>
-            </div>
+            
 
     <?php else: ?>
         <div class="no-account-selected">
