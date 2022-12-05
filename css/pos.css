@@ -243,6 +243,7 @@ nav h5 {
     color: white !important;
     font-weight: 600;
     font-size: 13px !important;
+    width: 163px !important;
 }
 
 .cancel {
@@ -288,6 +289,10 @@ nav h5 {
 
 .right {
     text-align: right;
+}
+
+.compute-td {
+    text-align: center;
 }
 
 .cancel {

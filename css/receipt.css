@@ -1,0 +1,56 @@
+* {
+    font-family:monospace;
+}
+
+body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border: 1px solid rgba(0, 0, 0, 0.233);
+    padding: 10px;
+    border-bottom: none;
+}
+
+table tr th {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px;
+}
+
+table tr td{
+    font-size: 12px;
+    padding: 5px 3px;
+}
+
+hr {
+    border: 0.5px solid rgba(0, 0, 0, 0.425);
+}
+
+.change td{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.425) !important;
+    padding-bottom: 50px;
+}
+
+.change th {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.425);
+    padding-bottom: 50px;
+}
+
+input {
+    width: 70px;
+    height: 30px;
+    background-color: green;
+    color: white;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+@media print {
+    input {
+     display: none;
+    }
+}

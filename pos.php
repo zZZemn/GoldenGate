@@ -409,8 +409,7 @@ if (isset($_SESSION["user_id"])) {
                                 <th>DISCOUNT</th>
                                 <th>SUBTOTAL</th>
                                 <th>PAYMENT</th>
-                                <td class="right"><input class="btn2  compute" type="submit" name="compute" value="Compute"></td>
-                                <td class="left"><input class="btn2  print" type="submit" name="print" value="Print" onclick="window.print()"></td>
+                                <td class="compute-td" colspan="2"><input class="btn2  compute" type="submit" name="compute" value="Compute"></td>
                             </tr>
                             <tr>
                                 <td><input type="text" name="discount" placeholder="Discount" readonly value="<?php echo $cust_disc ?>"></td>
@@ -449,8 +448,8 @@ if (isset($_SESSION["user_id"])) {
                         while($sales_row = $pro_sales_res->fetch_assoc())
                             {
                             echo "<tr>
-                                <td><a href='#' target='_blank'>".$sales_row['process_id']."</a></td>
-                                <td><a href='#' target='_blank'>".$sales_row['cust_id']."</a></td>
+                                <td><a target='_blank' href='sales-per-process.php?process_id=".$sales_row['process_id']."'>".$sales_row['process_id']."</a></td>
+                                <td><a href='customer.php?id=".$sales_row['cust_id']."' target='_blank'>".$sales_row['cust_id']."</a></td>
                                 <td>".$sales_row['sub_total']."</td>
                                 <td>".$sales_row['vat']."</td>
                                 <td>".$sales_row['discount']."</td>
