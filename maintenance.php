@@ -23,6 +23,15 @@ if ($inventoryRes = mysqli_query($connect, $inventory)) {
     $inv = mysqli_num_rows($inventoryRes);
 }
 
+$currentTax = 0;
+$currentDiscount = 0;
+$taxDis = "SELECT * FROM `payment_vat_discount`";
+$taxDisRes = $connect->query($taxDis);
+$taxDisDisAmt = $taxDisRes->fetch_assoc();
+
+$currentTax += $taxDisDisAmt['vat'];
+$currentDiscount += $taxDisDisAmt['discount'];
+
 ?>
 
 <!DOCTYPE html>
@@ -94,6 +103,18 @@ if ($inventoryRes = mysqli_query($connect, $inventory)) {
                 </tr>
             </table>
         </nav>
+
+        <div class="maintenance-option">
+            <h1>Discount Percentage</h1>
+            <h5><?php echo "".$currentDiscount ?></h5>
+            <a href="discount-change.php">Change</a>
+        </div>
+
+        <div class="option-2">
+            <h1>Tax Percentage</h1>
+            <h5><?php echo "".$currentTax ?></h5>
+            <a href="#">Change</a>
+        </div>
 
         
         
