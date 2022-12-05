@@ -14,14 +14,14 @@ $currentTaxDiscount = "SELECT * FROM `payment_vat_discount`";
 $currentTaxDiscountRes = $connect->query($currentTaxDiscount);
 $curDisRes = $currentTaxDiscountRes->fetch_assoc();
 
-$curDiscount = $curDisRes['discount'];
+$curTax = $curDisRes['vat'];
 
 if(isset($_POST['save'])) 
     {
-    $discount = $_POST['discount'];
-    $updateDis = "UPDATE `payment_vat_discount` SET `discount`='$discount' WHERE id = 0";
+    $tax = $_POST['tax'];
+    $updateTax = "UPDATE `payment_vat_discount` SET `vat`='$tax' WHERE id = 0";
 
-    if($connect->query($updateDis) == true)
+    if($connect->query($updateTax) == true)
     {
         header("location: maintenance.php");
     }
@@ -45,8 +45,8 @@ if(isset($_POST['save']))
         <?php if (isset($user)): ?>
             
             <form action="" method="post">
-                <h1>Discount Update</h1>
-                <input class="text" step="0.01" type="number" required name="discount" value="<?php echo $curDiscount ?>">
+                <h1>Tax Update</h1>
+                <input class="text" step="0.01" type="number" required name="tax" value="<?php echo $curTax ?>">
                 <input class="btn" type="submit" name="save" value="save">
             </form>
 

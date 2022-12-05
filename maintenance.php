@@ -113,7 +113,7 @@ $currentDiscount += $taxDisDisAmt['discount'];
         <div class="option-2">
             <h1>Tax Percentage</h1>
             <h5><?php echo "".$currentTax ?></h5>
-            <a href="#">Change</a>
+            <a href="tax-change.php">Change</a>
         </div>
 
         
