@@ -80,6 +80,14 @@ nav h5 {
     text-align: right !important;
 }
 
+.search-td input::-webkit-inner-spin-button,
+.search-td input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 .qty {
     text-align: left !important;
     width: 70px;

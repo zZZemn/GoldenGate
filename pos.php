@@ -49,6 +49,13 @@ if (isset($_SESSION["user_id"])) {
             $tblproductres = $connect->query($tblproduct);
             $product = $tblproductres->fetch_assoc();
 
+            if(!$product)
+            {
+                echo "<script type='text/javascript'>
+                            window.onload = function () { alert('Product Code ".$pro_code." is not available!'); }
+                                    </script>";
+            }
+            else {
             $product_name = $product['pro_name'];
             $product_meas = $product['measurement'];
             $product_price = $product['price'];
@@ -65,6 +72,7 @@ if (isset($_SESSION["user_id"])) {
             $vat = $subtotal * $tax;
             $total = $subtotal + $vat;
             $finalTot = $total - $cust_disc;
+            }
         }
 
 
@@ -311,7 +319,7 @@ if (isset($_SESSION["user_id"])) {
                         <table class="search-table hide">
                             <tr>
                                 <td class="search-td"> 
-                                    <input type="text" name="pro_code" list="pro_code" placeholder="Enter Product Code / Name" required>
+                                    <input type="number" name="pro_code" list="pro_code" placeholder="Enter Product Code">
                                     <?php 
                                         $product_code = "SELECT * FROM products";
                                         $code_result = $connect->query($product_code);
