@@ -303,7 +303,7 @@ if (isset($_SESSION["user_id"])) {
             <?php if($user['user_type'] == "Administrator")
                     {
                         echo "<hr>";
-                        echo "<h3><a href='goldengate.php'>Admin Page</a></h3>";
+                        echo "<h3><a class='admin-page-link' href='goldengate.php'><img src='img/people-circle-outline.svg'></a></h3>";
                     } 
                     else
                     {
