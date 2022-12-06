@@ -319,7 +319,7 @@ if (isset($_SESSION["user_id"])) {
                         <table class="search-table hide">
                             <tr>
                                 <td class="search-td"> 
-                                    <input type="number" name="pro_code" list="pro_code" placeholder="Enter Product Code">
+                                    <input type="text" name="pro_code" list="pro_code" placeholder="Enter Product Code">
                                     <?php 
                                         $product_code = "SELECT * FROM products";
                                         $code_result = $connect->query($product_code);
