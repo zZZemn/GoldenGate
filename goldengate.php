@@ -104,7 +104,7 @@ if ($inventoryRes = mysqli_query($connect, $inventory)) {
                 <th class="transaction-number">
                     <?php echo "".$row ?>
                 </th>
-                <td class="transaction">Transactions</td>
+                <td class="transaction">Transaction/s</td>
             </tr>
             <tr>
                 <td colspan="2" class="right"><a href="sales-transaction.php">View</a></td>
